@@ -113,6 +113,8 @@
     border-radius: 5px;
     outline: none;
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .price-slider::-webkit-slider-thumb {
