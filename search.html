@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Gyms - FitFindr</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <i class="fas fa-dumbbell"></i>
+                <h1>FitFindr</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="search.html" class="active">Search Gyms</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="search-page">
+        <section class="search-header">
+            <div class="search-header-content">
+                <h1>Find Your Perfect Gym</h1>
+                <div class="search-bar-container">
+                    <div class="search-input-group">
+                        <div class="dropdown-box">
+                            <i class="fas fa-location-dot"></i>
+                            <select class="location-dropdown" id="cityFilter">
+                                <option value="">All Cities</option>
+                                <option value="cebu">Cebu</option>
+                                <option value="bohol">Bohol</option>
+                                <option value="manila">Manila</option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <input type="text" placeholder="Search by name or location..." class="search-input" id="searchInput">
+                        </div>
+                        <button class="search-button" onclick="filterGyms()">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="results-section">
+            <div class="results-container">
+                <aside class="filters-sidebar">
+                    <div class="filter-header">
+                        <h3><i class="fas fa-filter"></i> Filters</h3>
+                        <button class="clear-filters" onclick="clearFilters()">Clear All</button>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Price Range</h4>
+                        <div class="price-range">
+                            <input type="range" min="0" max="100" value="100" class="price-slider" id="priceRange">
+                            <div class="price-display">
+                                <span>$0</span>
+                                <span id="maxPrice">$100</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Rating</h4>
+                        <div class="rating-filters">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="5">
+                                <span><i class="fas fa-star"></i> 5.0</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="4">
+                                <span><i class="fas fa-star"></i> 4.0+</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="3">
+                                <span><i class="fas fa-star"></i> 3.0+</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Amenities</h4>
+                        <div class="amenity-filters">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="pool">
+                                <span><i class="fas fa-water-ladder"></i> Swimming Pool</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="sauna">
+                                <span><i class="fas fa-hot-tub-person"></i> Sauna</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="parking">
+                                <span><i class="fas fa-square-parking"></i> Parking</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="classes">
+                                <span><i class="fas fa-people-group"></i> Group Classes</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="trainer">
+                                <span><i class="fas fa-dumbbell"></i> Personal Trainer</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Hours</h4>
+                        <div class="hours-filters">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="24h">
+                                <span><i class="fas fa-clock"></i> 24/7 Access</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="weekend">
+                                <span><i class="fas fa-calendar-days"></i> Weekend Hours</span>
+                            </label>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="results-main">
+                    <div class="results-header">
+                        <div class="results-count">
+                            <h2>Found <span id="gymCount">12</span> Gyms</h2>
+                        </div>
+                        <div class="sort-options">
+                            <label for="sortBy">Sort by:</label>
+                            <select id="sortBy" class="sort-select" onchange="sortGyms()">
+                                <option value="relevance">Relevance</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="rating">Highest Rated</option>
+                                <option value="distance">Nearest</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="gym-results" id="gymResults">
+                        <!-- Gym Card 1 -->
+                        <div class="gym-result-card" data-city="cebu" data-price="29" data-rating="4.8">
+                            <div class="gym-image">
+                                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400" alt="FitLife Gym">
+                                <div class="gym-badge">Popular</div>
+                            </div>
+                            <div class="gym-details">
+                                <div class="gym-header">
+                                    <h3>FitLife Gym</h3>
+                                    <div class="gym-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.8</span>
+                                        <span class="review-count">(127 reviews)</span>
+                                    </div>
+                                </div>
+                                <div class="gym-location">
+                                    <i class="fas fa-location-dot"></i>
+                                    <span>0.5 miles • Cebu City</span>
+                                </div>
+                                <div class="gym-amenities">
+                                    <span class="amenity-tag"><i class="fas fa-water-ladder"></i> Pool</span>
+                                    <span class="amenity-tag"><i class="fas fa-square-parking"></i> Parking</span>
+                                    <span class="amenity-tag"><i class="fas fa-people-group"></i> Classes</span>
+                                </div>
+                                <p class="gym-description">Modern fitness center with state-of-the-art equipment and certified trainers.</p>
+                                <div class="gym-footer">
+                                    <div class="gym-price">
+                                        <span class="price-label">Starting at</span>
+                                        <span class="price-amount">$29/month</span>
+                                    </div>
+                                    <button class="view-details-btn">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gym Card 2 -->
+                        <div class="gym-result-card" data-city="cebu" data-price="39" data-rating="4.6">
+                            <div class="gym-image">
+                                <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400" alt="PowerHouse Fitness">
+                            </div>
+                            <div class="gym-details">
+                                <div class="gym-header">
+                                    <h3>PowerHouse Fitness</h3>
+                                    <div class="gym-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.6</span>
+                                        <span class="review-count">(89 reviews)</span>
+                                    </div>
+                                </div>
+                                <div class="gym-location">
+                                    <i class="fas fa-location-dot"></i>
+                                    <span>1.2 miles • Cebu City</span>
+                                </div>
+                                <div class="gym-amenities">
+                                    <span class="amenity-tag"><i class="fas fa-hot-tub-person"></i> Sauna</span>
+                                    <span class="amenity-tag"><i class="fas fa-dumbbell"></i> Trainer</span>
+                                    <span class="amenity-tag"><i class="fas fa-clock"></i> 24/7</span>
+                                </div>
+                                <p class="gym-description">24/7 gym with extensive free weights area and cardio equipment.</p>
+                                <div class="gym-footer">
+                                    <div class="gym-price">
+                                        <span class="price-label">Starting at</span>
+                                        <span class="price-amount">$39/month</span>
+                                    </div>
+                                    <button class="view-details-btn">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gym Card 3 -->
+                        <div class="gym-result-card" data-city="cebu" data-price="49" data-rating="4.9">
+                            <div class="gym-image">
+                                <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=400" alt="Elite Training Center">
+                                <div class="gym-badge premium">Premium</div>
+                            </div>
+                            <div class="gym-details">
+                                <div class="gym-header">
+                                    <h3>Elite Training Center</h3>
+                                    <div class="gym-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.9</span>
+                                        <span class="review-count">(203 reviews)</span>
+                                    </div>
+                                </div>
+                                <div class="gym-location">
+                                    <i class="fas fa-location-dot"></i>
+                                    <span>0.8 miles • Cebu City</span>
+                                </div>
+                                <div class="gym-amenities">
+                                    <span class="amenity-tag"><i class="fas fa-water-ladder"></i> Pool</span>
+                                    <span class="amenity-tag"><i class="fas fa-hot-tub-person"></i> Sauna</span>
+                                    <span class="amenity-tag"><i class="fas fa-people-group"></i> Classes</span>
+                                    <span class="amenity-tag"><i class="fas fa-dumbbell"></i> Trainer</span>
+                                </div>
+                                <p class="gym-description">Premium facility with Olympic-sized pool, spa services, and exclusive classes.</p>
+                                <div class="gym-footer">
+                                    <div class="gym-price">
+                                        <span class="price-label">Starting at</span>
+                                        <span class="price-amount">$49/month</span>
+                                    </div>
+                                    <button class="view-details-btn">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gym Card 4 -->
+                        <div class="gym-result-card" data-city="manila" data-price="35" data-rating="4.7">
+                            <div class="gym-image">
+                                <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400" alt="Metro Fitness Hub">
+                            </div>
+                            <div class="gym-details">
+                                <div class="gym-header">
+                                    <h3>Metro Fitness Hub</h3>
+                                    <div class="gym-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.7</span>
+                                        <span class="review-count">(156 reviews)</span>
+                                    </div>
+                                </div>
+                                <div class="gym-location">
+                                    <i class="fas fa-location-dot"></i>
+                                    <span>0.3 miles • Manila</span>
+                                </div>
+                                <div class="gym-amenities">
+                                    <span class="amenity-tag"><i class="fas fa-square-parking"></i> Parking</span>
+                                    <span class="amenity-tag"><i class="fas fa-people-group"></i> Classes</span>
+                                    <span class="amenity-tag"><i class="fas fa-clock"></i> 24/7</span>
+                                </div>
+                                <p class="gym-description">Conveniently located downtown gym with flexible membership options.</p>
+                                <div class="gym-footer">
+                                    <div class="gym-price">
+                                        <span class="price-label">Starting at</span>
+                                        <span class="price-amount">$35/month</span>
+                                    </div>
+                                    <button class="view-details-btn">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gym Card 5 -->
+                        <div class="gym-result-card" data-city="bohol" data-price="25" data-rating="4.5">
+                            <div class="gym-image">
+                                <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=400" alt="Island Fitness">
+                            </div>
+                            <div class="gym-details">
+                                <div class="gym-header">
+                                    <h3>Island Fitness</h3>
+                                    <div class="gym-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.5</span>
+                                        <span class="review-count">(72 reviews)</span>
+                                    </div>
+                                </div>
+                                <div class="gym-location">
+                                    <i class="fas fa-location-dot"></i>
+                                    <span>0.6 miles • Tagbilaran, Bohol</span>
+                                </div>
+                                <div class="gym-amenities">
+                                    <span class="amenity-tag"><i class="fas fa-square-parking"></i> Parking</span>
+                                    <span class="amenity-tag"><i class="fas fa-dumbbell"></i> Trainer</span>
+                                </div>
+                                <p class="gym-description">Affordable gym with friendly staff and essential equipment for your workout needs.</p>
+                                <div class="gym-footer">
+                                    <div class="gym-price">
+                                        <span class="price-label">Starting at</span>
+                                        <span class="price-amount">$25/month</span>
+                                    </div>
+                                    <button class="view-details-btn">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gym Card 6 -->
+                        <div class="gym-result-card" data-city="manila" data-price="45" data-rating="4.8">
+                            <div class="gym-image">
+                                <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=400" alt="Peak Performance">
+                                <div class="gym-badge">Popular</div>
+                            </div>
+                            <div class="gym-details">
+                                <div class="gym-header">
+                                    <h3>Peak Performance</h3>
+                                    <div class="gym-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.8</span>
+                                        <span class="review-count">(198 reviews)</span>
+                                    </div>
+                                </div>
+                                <div class="gym-location">
+                                    <i class="fas fa-location-dot"></i>
+                                    <span>1.0 miles • Makati, Manila</span>
+                                </div>
+                                <div class="gym-amenities">
+                                    <span class="amenity-tag"><i class="fas fa-water-ladder"></i> Pool</span>
+                                    <span class="amenity-tag"><i class="fas fa-people-group"></i> Classes</span>
+                                    <span class="amenity-tag"><i class="fas fa-dumbbell"></i> Trainer</span>
+                                </div>
+                                <p class="gym-description">High-end fitness facility with specialized training programs and nutritionists.</p>
+                                <div class="gym-footer">
+                                    <div class="gym-price">
+                                        <span class="price-label">Starting at</span>
+                                        <span class="price-amount">$45/month</span>
+                                    </div>
+                                    <button class="view-details-btn">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <i class="fas fa-dumbbell"></i>
+                    <h3>FitFindr</h3>
+                </div>
+                <p>Your ultimate destination for finding the perfect gym that fits your lifestyle and budget.</p>
+            </div>
+            <div class="footer-social">
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 FitFindr. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/search.js"></script>
+</body>
+</html>
