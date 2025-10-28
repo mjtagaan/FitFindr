@@ -35,7 +35,6 @@
                                 <option value="">All Cities</option>
                                 <option value="cebu">Cebu</option>
                                 <option value="bohol">Bohol</option>
-                                <option value="manila">Manila</option>
                             </select>
                         </div>
                         <div class="input-box">
@@ -60,10 +59,10 @@
                     <div class="filter-group">
                         <h4>Price Range</h4>
                         <div class="price-range">
-                            <input type="range" min="0" max="100" value="100" class="price-slider" id="priceRange">
+                            <input type="range" min="0" max="4000" value="4000" class="price-slider" id="priceRange">
                             <div class="price-display">
-                                <span>$0</span>
-                                <span id="maxPrice">$100</span>
+                                <span>₱0</span>
+                                <span id="maxPrice">₱4,000</span>
                             </div>
                         </div>
                     </div>
@@ -103,7 +102,7 @@
                             </label>
                             <label class="filter-checkbox">
                                 <input type="checkbox" value="classes">
-                                <span><i class="fas fa-people-group"></i> Group Classes</span>
+                                <span><i class="fas fa-users"></i> Group Classes</span>
                             </label>
                             <label class="filter-checkbox">
                                 <input type="checkbox" value="trainer">
@@ -145,207 +144,298 @@
                     </div>
 
                     <div class="gym-results" id="gymResults">
-                        <!-- Gym Card 1 -->
-                        <div class="gym-result-card" data-city="cebu" data-price="29" data-rating="4.8">
+                        <!-- GYM 1: Yokoks Gym Consolacion - CEBU -->
+                        <div class="gym-result-card" data-city="cebu" data-price="800" data-rating="3.0">
                             <div class="gym-image">
-                                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400" alt="FitLife Gym">
-                                <div class="gym-badge">Popular</div>
+                                <img src="images/YokoksGymConsolacionThumbnail.jpg" alt="Yokoks Gym Consolacion">
                             </div>
                             <div class="gym-details">
                                 <div class="gym-header">
-                                    <h3>FitLife Gym</h3>
+                                    <h3>Yokoks Gym Consolacion</h3> <!-- GYM NAME -->
                                     <div class="gym-rating">
                                         <i class="fas fa-star"></i>
-                                        <span>4.8</span>
-                                        <span class="review-count">(127 reviews)</span>
+                                        <span>3.0</span> <!-- RATING -->
                                     </div>
                                 </div>
                                 <div class="gym-location">
                                     <i class="fas fa-location-dot"></i>
-                                    <span>0.5 miles • Cebu City</span>
+                                    <span>Consolacion, Cebu</span> <!-- DISTANCE & LOCATION -->
                                 </div>
-                                <div class="gym-amenities">
-                                    <span class="amenity-tag"><i class="fas fa-water-ladder"></i> Pool</span>
+                                <div class="gym-amenities"> <!-- AMENITIES: pool, parking, classes, sauna, trainer, 24h -->
                                     <span class="amenity-tag"><i class="fas fa-square-parking"></i> Parking</span>
-                                    <span class="amenity-tag"><i class="fas fa-people-group"></i> Classes</span>
-                                </div>
-                                <p class="gym-description">Modern fitness center with state-of-the-art equipment and certified trainers.</p>
-                                <div class="gym-footer">
-                                    <div class="gym-price">
-                                        <span class="price-label">Starting at</span>
-                                        <span class="price-amount">$29/month</span>
-                                    </div>
-                                    <button class="view-details-btn">View Details</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Gym Card 2 -->
-                        <div class="gym-result-card" data-city="cebu" data-price="39" data-rating="4.6">
-                            <div class="gym-image">
-                                <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400" alt="PowerHouse Fitness">
-                            </div>
-                            <div class="gym-details">
-                                <div class="gym-header">
-                                    <h3>PowerHouse Fitness</h3>
-                                    <div class="gym-rating">
-                                        <i class="fas fa-star"></i>
-                                        <span>4.6</span>
-                                        <span class="review-count">(89 reviews)</span>
-                                    </div>
-                                </div>
-                                <div class="gym-location">
-                                    <i class="fas fa-location-dot"></i>
-                                    <span>1.2 miles • Cebu City</span>
-                                </div>
-                                <div class="gym-amenities">
-                                    <span class="amenity-tag"><i class="fas fa-hot-tub-person"></i> Sauna</span>
                                     <span class="amenity-tag"><i class="fas fa-dumbbell"></i> Trainer</span>
-                                    <span class="amenity-tag"><i class="fas fa-clock"></i> 24/7</span>
                                 </div>
-                                <p class="gym-description">24/7 gym with extensive free weights area and cardio equipment.</p>
+                                <p class="gym-description">Modern fitness center with state-of-the-art equipment and certified trainers.</p> <!-- DESCRIPTION -->
                                 <div class="gym-footer">
                                     <div class="gym-price">
                                         <span class="price-label">Starting at</span>
-                                        <span class="price-amount">$39/month</span>
+                                        <span class="price-amount">₱800/month</span> <!-- PRICE -->
                                     </div>
                                     <button class="view-details-btn">View Details</button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Gym Card 3 -->
-                        <div class="gym-result-card" data-city="cebu" data-price="49" data-rating="4.9">
+                        <!-- GYM 2: Holiday Gym and Spa - CEBU -->
+                        <div class="gym-result-card" data-city="cebu" data-price="2000" data-rating="4.8">
                             <div class="gym-image">
-                                <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=400" alt="Elite Training Center">
+                                <img src="images/HolidayGymAndSpaThumbnail.jpg" alt="Holiday Gym and Spa">
                                 <div class="gym-badge premium">Premium</div>
                             </div>
                             <div class="gym-details">
                                 <div class="gym-header">
-                                    <h3>Elite Training Center</h3>
+                                    <h3>Holiday Gym and Spa</h3> <!-- GYM NAME -->
                                     <div class="gym-rating">
                                         <i class="fas fa-star"></i>
-                                        <span>4.9</span>
-                                        <span class="review-count">(203 reviews)</span>
+                                        <span>4.8</span> <!-- RATING -->
                                     </div>
                                 </div>
                                 <div class="gym-location">
                                     <i class="fas fa-location-dot"></i>
-                                    <span>0.8 miles • Cebu City</span>
+                                    <span>Gov. M. Cuenco Ave, Cebu City</span> <!-- DISTANCE & LOCATION -->
                                 </div>
-                                <div class="gym-amenities">
-                                    <span class="amenity-tag"><i class="fas fa-water-ladder"></i> Pool</span>
+                                <div class="gym-amenities"> <!-- AMENITIES: pool, parking, classes, sauna, trainer, 24h -->
                                     <span class="amenity-tag"><i class="fas fa-hot-tub-person"></i> Sauna</span>
-                                    <span class="amenity-tag"><i class="fas fa-people-group"></i> Classes</span>
+                                    <span class="amenity-tag"><i class="fas fa-users"></i> Classes</span>
                                     <span class="amenity-tag"><i class="fas fa-dumbbell"></i> Trainer</span>
-                                </div>
-                                <p class="gym-description">Premium facility with Olympic-sized pool, spa services, and exclusive classes.</p>
-                                <div class="gym-footer">
-                                    <div class="gym-price">
-                                        <span class="price-label">Starting at</span>
-                                        <span class="price-amount">$49/month</span>
-                                    </div>
-                                    <button class="view-details-btn">View Details</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Gym Card 4 -->
-                        <div class="gym-result-card" data-city="manila" data-price="35" data-rating="4.7">
-                            <div class="gym-image">
-                                <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400" alt="Metro Fitness Hub">
-                            </div>
-                            <div class="gym-details">
-                                <div class="gym-header">
-                                    <h3>Metro Fitness Hub</h3>
-                                    <div class="gym-rating">
-                                        <i class="fas fa-star"></i>
-                                        <span>4.7</span>
-                                        <span class="review-count">(156 reviews)</span>
-                                    </div>
-                                </div>
-                                <div class="gym-location">
-                                    <i class="fas fa-location-dot"></i>
-                                    <span>0.3 miles • Manila</span>
-                                </div>
-                                <div class="gym-amenities">
-                                    <span class="amenity-tag"><i class="fas fa-square-parking"></i> Parking</span>
-                                    <span class="amenity-tag"><i class="fas fa-people-group"></i> Classes</span>
-                                    <span class="amenity-tag"><i class="fas fa-clock"></i> 24/7</span>
-                                </div>
-                                <p class="gym-description">Conveniently located downtown gym with flexible membership options.</p>
-                                <div class="gym-footer">
-                                    <div class="gym-price">
-                                        <span class="price-label">Starting at</span>
-                                        <span class="price-amount">$35/month</span>
-                                    </div>
-                                    <button class="view-details-btn">View Details</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Gym Card 5 -->
-                        <div class="gym-result-card" data-city="bohol" data-price="25" data-rating="4.5">
-                            <div class="gym-image">
-                                <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=400" alt="Island Fitness">
-                            </div>
-                            <div class="gym-details">
-                                <div class="gym-header">
-                                    <h3>Island Fitness</h3>
-                                    <div class="gym-rating">
-                                        <i class="fas fa-star"></i>
-                                        <span>4.5</span>
-                                        <span class="review-count">(72 reviews)</span>
-                                    </div>
-                                </div>
-                                <div class="gym-location">
-                                    <i class="fas fa-location-dot"></i>
-                                    <span>0.6 miles • Tagbilaran, Bohol</span>
-                                </div>
-                                <div class="gym-amenities">
-                                    <span class="amenity-tag"><i class="fas fa-square-parking"></i> Parking</span>
-                                    <span class="amenity-tag"><i class="fas fa-dumbbell"></i> Trainer</span>
-                                </div>
-                                <p class="gym-description">Affordable gym with friendly staff and essential equipment for your workout needs.</p>
-                                <div class="gym-footer">
-                                    <div class="gym-price">
-                                        <span class="price-label">Starting at</span>
-                                        <span class="price-amount">$25/month</span>
-                                    </div>
-                                    <button class="view-details-btn">View Details</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Gym Card 6 -->
-                        <div class="gym-result-card" data-city="manila" data-price="45" data-rating="4.8">
-                            <div class="gym-image">
-                                <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=400" alt="Peak Performance">
-                                <div class="gym-badge">Popular</div>
-                            </div>
-                            <div class="gym-details">
-                                <div class="gym-header">
-                                    <h3>Peak Performance</h3>
-                                    <div class="gym-rating">
-                                        <i class="fas fa-star"></i>
-                                        <span>4.8</span>
-                                        <span class="review-count">(198 reviews)</span>
-                                    </div>
-                                </div>
-                                <div class="gym-location">
-                                    <i class="fas fa-location-dot"></i>
-                                    <span>1.0 miles • Makati, Manila</span>
-                                </div>
-                                <div class="gym-amenities">
                                     <span class="amenity-tag"><i class="fas fa-water-ladder"></i> Pool</span>
-                                    <span class="amenity-tag"><i class="fas fa-people-group"></i> Classes</span>
-                                    <span class="amenity-tag"><i class="fas fa-dumbbell"></i> Trainer</span>
+                                    <span class="amenity-tag"><i class="fas fa-square-parking"></i> Parking</span>
                                 </div>
-                                <p class="gym-description">High-end fitness facility with specialized training programs and nutritionists.</p>
+                                <p class="gym-description">Full-service gym with spa amenities and wellness programs.</p> <!-- DESCRIPTION -->
                                 <div class="gym-footer">
                                     <div class="gym-price">
                                         <span class="price-label">Starting at</span>
-                                        <span class="price-amount">$45/month</span>
+                                        <span class="price-amount">₱2,000/month</span> <!-- PRICE -->
+                                    </div>
+                                    <button class="view-details-btn">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- GYM 3: Yokoks Gym R.Landon Street - CEBU -->
+                        <div class="gym-result-card" data-city="cebu" data-price="1000" data-rating="3.0">
+                            <div class="gym-image">
+                                <img src="images/YokoksGymRLandonStreetThumbnail.jpg" alt="Yokoks Gym R.Landon Street">
+                            </div>
+                            <div class="gym-details">
+                                <div class="gym-header">
+                                    <h3>Yokoks Gym R.Landon Street</h3> <!-- GYM NAME -->
+                                    <div class="gym-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>3.0</span> <!-- RATING -->
+                                    </div>
+                                </div>
+                                <div class="gym-location">
+                                    <i class="fas fa-location-dot"></i>
+                                    <span>R.Landon Street, Cebu City</span> <!-- DISTANCE & LOCATION -->
+                                </div>
+                                <div class="gym-amenities"> <!-- AMENITIES: pool, parking, classes, sauna, trainer, 24h -->
+                                    <span class="amenity-tag"><i class="fas fa-square-parking"></i> Parking</span>
+                                    <span class="amenity-tag"><i class="fas fa-dumbbell"></i> Trainer</span>
+                                </div>
+                                <p class="gym-description">Premium facility with comprehensive training equipment and programs.</p> <!-- DESCRIPTION -->
+                                <div class="gym-footer">
+                                    <div class="gym-price">
+                                        <span class="price-label">Starting at</span>
+                                        <span class="price-amount">₱1,000/month</span> <!-- PRICE -->
+                                    </div>
+                                    <button class="view-details-btn">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- GYM 4: K-Fitness - CEBU -->
+                        <div class="gym-result-card" data-city="cebu" data-price="2500" data-rating="4.0">
+                            <div class="gym-image">
+                                <img src="images/KFitnessThumbnail.jpg" alt="K-Fitness">
+                            </div>
+                            <div class="gym-details">
+                                <div class="gym-header">
+                                    <h3>K-Fitness Mandaue</h3> <!-- GYM NAME -->
+                                    <div class="gym-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.0</span> <!-- RATING -->
+                                    </div>
+                                </div>
+                                <div class="gym-location">
+                                    <i class="fas fa-location-dot"></i>
+                                    <span>Mandaue, Cebu</span> <!-- DISTANCE & LOCATION -->
+                                </div>
+                                <div class="gym-amenities"> <!-- AMENITIES: pool, parking, classes, sauna, trainer, 24h -->
+                                    <span class="amenity-tag"><i class="fas fa-clock"></i> 24/7</span>
+                                    <span class="amenity-tag"><i class="fas fa-dumbbell"></i> Trainer</span>
+                                    <span class="amenity-tag"><i class="fas fa-square-parking"></i> Parking</span>
+                                </div>
+                                <p class="gym-description">Modern fitness center with quality equipment and training programs.</p> <!-- DESCRIPTION -->
+                                <div class="gym-footer">
+                                    <div class="gym-price">
+                                        <span class="price-label">Starting at</span>
+                                        <span class="price-amount">₱2,500/month</span> <!-- PRICE -->
+                                    </div>
+                                    <button class="view-details-btn">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- GYM 6: Anytime Fitness - IT Park - CEBU -->
+                        <div class="gym-result-card" data-city="cebu" data-price="2500" data-rating="4.1">
+                            <div class="gym-image">
+                                <img src="images/AnytimeFitnessItParkThumbnail.jpg" alt="Anytime Fitness IT Park">
+                                <div class="gym-badge premium">Premium</div>
+                            </div>
+                            <div class="gym-details">
+                                <div class="gym-header">
+                                    <h3>Anytime Fitness - IT Park</h3> <!-- GYM NAME -->
+                                    <div class="gym-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.1</span> <!-- RATING -->
+                                    </div>
+                                </div>
+                                <div class="gym-location">
+                                    <i class="fas fa-location-dot"></i>
+                                    <span>Cebu IT Park, Lahug, Cebu City</span> <!-- DISTANCE & LOCATION -->
+                                </div>
+                                <div class="gym-amenities"> <!-- AMENITIES: pool, parking, classes, sauna, trainer, 24h -->
+                                    <span class="amenity-tag"><i class="fas fa-clock"></i> 24/7</span>
+                                    <span class="amenity-tag"><i class="fas fa-dumbbell"></i> Trainer</span>
+                                    <span class="amenity-tag"><i class="fas fa-users"></i> Classes</span>
+                                </div>
+                                <p class="gym-description">Premium location with top-tier equipment and professional trainers.</p> <!-- DESCRIPTION -->
+                                <div class="gym-footer">
+                                    <div class="gym-price">
+                                        <span class="price-label">Starting at</span>
+                                        <span class="price-amount">₱2,500/month</span> <!-- PRICE -->
+                                    </div>
+                                    <button class="view-details-btn">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- GYM 7: Conquer Fitness Gym - Liloan - CEBU -->
+                        <div class="gym-result-card" data-city="cebu" data-price="1300" data-rating="4.2">
+                            <div class="gym-image">
+                                <img src="images/ConquerFitnessGymThumbnail.jpg" alt="Conquer Fitness Gym">
+                            </div>
+                            <div class="gym-details">
+                                <div class="gym-header">
+                                    <h3>Conquer Fitness Gym - Liloan</h3> <!-- GYM NAME -->
+                                    <div class="gym-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.2</span> <!-- RATING -->
+                                    </div>
+                                </div>
+                                <div class="gym-location">
+                                    <i class="fas fa-location-dot"></i>
+                                    <span>Liloan, Cebu</span> <!-- DISTANCE & LOCATION -->
+                                </div>
+                                <div class="gym-amenities"> <!-- AMENITIES: pool, parking, classes, sauna, trainer, 24h -->
+                                    <span class="amenity-tag"><i class="fas fa-square-parking"></i> Parking</span>
+                                    <span class="amenity-tag"><i class="fas fa-dumbbell"></i> Trainer</span>
+                                    <span class="amenity-tag"><i class="fas fa-hot-tub-person"></i> Sauna</span>
+                                    <span class="amenity-tag"><i class="fas fa-users"></i> Classes</span>
+                                </div>
+                                <p class="gym-description">Local gym with affordable rates and quality training equipment.</p> <!-- DESCRIPTION -->
+                                <div class="gym-footer">
+                                    <div class="gym-price">
+                                        <span class="price-label">Starting at</span>
+                                        <span class="price-amount">₱1,500/month</span> <!-- PRICE -->
+                                    </div>
+                                    <button class="view-details-btn">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- GYM 8: Ripped City Gym - BOHOL -->
+                        <div class="gym-result-card" data-city="bohol" data-price="1500" data-rating="3.7">
+                            <div class="gym-image">
+                                <img src="images/RippedCityGymThumbnail.jpg" alt="Ripped City Gym">
+                            </div>
+                            <div class="gym-details">
+                                <div class="gym-header">
+                                    <h3>Ripped City Gym</h3> <!-- GYM NAME -->
+                                    <div class="gym-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>3.7</span> <!-- RATING -->
+                                    </div>
+                                </div>
+                                <div class="gym-location">
+                                    <i class="fas fa-location-dot"></i>
+                                    <span>0.6 miles • Tagbilaran, Bohol</span> <!-- DISTANCE & LOCATION -->
+                                </div>
+                                <div class="gym-amenities"> <!-- AMENITIES: pool, parking, classes, sauna, trainer, 24h -->
+                                    <span class="amenity-tag"><i class="fas fa-square-parking"></i> Parking</span>
+                                    <span class="amenity-tag"><i class="fas fa-dumbbell"></i> Trainer</span>
+                                </div>
+                                <p class="gym-description">Affordable gym with friendly staff and essential equipment for your workout needs.</p> <!-- DESCRIPTION -->
+                                <div class="gym-footer">
+                                    <div class="gym-price">
+                                        <span class="price-label">Starting at</span>
+                                        <span class="price-amount">₱1,300/month</span> <!-- PRICE -->
+                                    </div>
+                                    <button class="view-details-btn">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- GYM 9: Bold Fitness Center - BOHOL -->
+                        <div class="gym-result-card" data-city="bohol" data-price="2500" data-rating="4.0">
+                            <div class="gym-image">
+                                <img src="images/BoldFitnessCenterThumbnail.jpg" alt="Bold Fitness Gym">
+                            </div>
+                            <div class="gym-details">
+                                <div class="gym-header">
+                                    <h3>Bold Fitness Center</h3> <!-- GYM NAME -->
+                                    <div class="gym-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.0</span> <!-- RATING -->
+                                    </div>
+                                </div>
+                                <div class="gym-location">
+                                    <i class="fas fa-location-dot"></i>
+                                    <span>Tagbilaran City, Bohol</span> <!-- DISTANCE & LOCATION -->
+                                </div>
+                                <div class="gym-amenities"> <!-- AMENITIES: pool, parking, classes, sauna, trainer, 24h -->
+                                    <span class="amenity-tag"><i class="fas fa-square-parking"></i> Parking</span>
+                                    <span class="amenity-tag"><i class="fas fa-users"></i> Classes</span>
+                                    <span class="amenity-tag"><i class="fas fa-dumbbell"></i> Trainer</span>
+                                </div>
+                                <p class="gym-description">Modern fitness facility with comprehensive training programs and equipment.</p> <!-- DESCRIPTION -->
+                                <div class="gym-footer">
+                                    <div class="gym-price">
+                                        <span class="price-label">Starting at</span>
+                                        <span class="price-amount">₱2,500/month</span> <!-- PRICE -->
+                                    </div>
+                                    <button class="view-details-btn">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- GYM 10: Crossfit Subtero - CEBU -->
+                        <div class="gym-result-card" data-city="cebu" data-price="3500" data-rating="4.0">
+                            <div class="gym-image">
+                                <img src="images/CrossfitSubteroThumbnail.jpg" alt="Crossfit Gym Subtero">
+                            </div>
+                            <div class="gym-details">
+                                <div class="gym-header">
+                                    <h3>Crossfit Subtero</h3> <!-- GYM NAME -->
+                                    <div class="gym-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.0</span> <!-- RATING -->
+                                    </div>
+                                </div>
+                                <div class="gym-location">
+                                    <i class="fas fa-location-dot"></i>
+                                    <span>Mandaue, Cebu</span> <!-- DISTANCE & LOCATION -->
+                                </div>
+                                <div class="gym-amenities"> <!-- AMENITIES: pool, parking, classes, sauna, trainer, 24h -->
+                                    <span class="amenity-tag"><i class="fas fa-users"></i> Classes</span>
+                                    <span class="amenity-tag"><i class="fas fa-dumbbell"></i> Trainer</span>
+                                    <span class="amenity-tag"><i class="fas fa-square-parking"></i> Parking</span>
+                                </div>
+                                <p class="gym-description">CrossFit-focused training facility with functional fitness programs.</p> <!-- DESCRIPTION -->
+                                <div class="gym-footer">
+                                    <div class="gym-price">
+                                        <span class="price-label">Starting at</span>
+                                        <span class="price-amount">₱3,500/month</span> <!-- PRICE -->
                                     </div>
                                     <button class="view-details-btn">View Details</button>
                                 </div>
