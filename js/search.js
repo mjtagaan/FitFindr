@@ -161,3 +161,391 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalGyms = document.querySelectorAll('.gym-result-card').length;
     document.getElementById('gymCount').textContent = totalGyms;
 });
+
+// Comprehensive Gym Details Database
+const gymDetails = {
+    'yokoks-consolacion': {
+        name: 'Yokoks Gym Consolacion',
+        image: 'images/YokoksGymConsolacionThumbnail.jpg',
+        rating: 3.0,
+        reviewCount: '(45 reviews)',
+        location: 'Cansaga, Consolacion, Cebu',
+        description: 'Yokoks Gym Consolacion is a community-focused fitness center offering essential workout equipment and personal training services. Known for its friendly atmosphere and affordable rates, this gym provides a comfortable environment for both beginners and experienced fitness enthusiasts. The facility features modern equipment and experienced trainers dedicated to helping you achieve your fitness goals.',
+        hours: {
+            'Monday - Friday': '6:00 AM - 10:00 PM',
+            'Saturday': '7:00 AM - 9:00 PM',
+            'Sunday': '7:00 AM - 8:00 PM'
+        },
+        contact: {
+            phone: '(032) 234-5678',
+            email: 'consolacion@yokoksgym.ph',
+            website: 'www.yokoksgym.ph'
+        },
+        facilities: [
+            { icon: 'fa-dumbbell', name: 'Free Weights' },
+            { icon: 'fa-person-running', name: 'Cardio Equipment' },
+            { icon: 'fa-square-parking', name: 'Free Parking' },
+            { icon: 'fa-user', name: 'Personal Trainers' },
+            { icon: 'fa-wifi', name: 'Free WiFi' },
+            { icon: 'fa-fan', name: 'Air Conditioning' }
+        ],
+        pricing: [
+            { duration: 'Daily', amount: '₱100', period: 'per day' },
+            { duration: 'Monthly', amount: '₱800', period: 'per month' },
+            { duration: '3 Months', amount: '₱2,100', period: 'one-time' },
+            { duration: '6 Months', amount: '₱3,900', period: 'one-time' }
+        ]
+    },
+    'holiday-gym-spa': {
+        name: 'Holiday Gym and Spa',
+        image: 'images/HolidayGymAndSpaThumbnail.jpg',
+        rating: 4.8,
+        reviewCount: '(312 reviews)',
+        location: 'Gov. M. Cuenco Ave, Banilad, Cebu City',
+        description: 'Holiday Gym and Spa is a premium wellness destination that combines state-of-the-art fitness facilities with luxurious spa services. This upscale establishment offers a comprehensive approach to health and wellness, featuring top-tier equipment, professional trainers, therapeutic spa treatments, swimming pool, and sauna facilities. Perfect for those seeking a holistic fitness and relaxation experience in an elegant environment.',
+        hours: {
+            'Monday - Friday': '5:00 AM - 11:00 PM',
+            'Saturday - Sunday': '6:00 AM - 10:00 PM',
+            'Holidays': '7:00 AM - 9:00 PM'
+        },
+        contact: {
+            phone: '(032) 412-8899',
+            email: 'info@holidaygymspa.com',
+            website: 'www.holidaygymspa.com'
+        },
+        facilities: [
+            { icon: 'fa-water-ladder', name: 'Swimming Pool' },
+            { icon: 'fa-hot-tub-person', name: 'Sauna & Steam Room' },
+            { icon: 'fa-spa', name: 'Spa Services' },
+            { icon: 'fa-dumbbell', name: 'Premium Equipment' },
+            { icon: 'fa-users', name: 'Group Classes' },
+            { icon: 'fa-user-tie', name: 'Certified Trainers' },
+            { icon: 'fa-square-parking', name: 'Valet Parking' },
+            { icon: 'fa-shirt', name: 'Locker Rooms' },
+            { icon: 'fa-mug-hot', name: 'Juice Bar' }
+        ],
+        pricing: [
+            { duration: 'Daily', amount: '₱250', period: 'per day' },
+            { duration: 'Monthly', amount: '₱2,000', period: 'per month' },
+            { duration: '6 Months', amount: '₱10,500', period: 'one-time' },
+            { duration: 'Annual', amount: '₱18,000', period: 'one-time' }
+        ]
+    },
+    'yokoks-rlandon': {
+        name: 'Yokoks Gym R.Landon Street',
+        image: 'images/YokoksGymRLandonStreetThumbnail.jpg',
+        rating: 3.0,
+        reviewCount: '(68 reviews)',
+        location: 'R.Landon Street, Cebu City',
+        description: 'Located in the heart of Cebu City, Yokoks Gym R.Landon Street provides a convenient fitness solution for busy professionals and residents in the area. This branch features comprehensive training equipment, personal training services, and ample parking space. The gym maintains a clean, well-maintained facility with experienced staff ready to assist members in achieving their fitness objectives.',
+        hours: {
+            'Monday - Friday': '6:00 AM - 10:00 PM',
+            'Saturday': '7:00 AM - 9:00 PM',
+            'Sunday': '8:00 AM - 8:00 PM'
+        },
+        contact: {
+            phone: '(032) 256-7890',
+            email: 'rlandon@yokoksgym.ph',
+            website: 'www.yokoksgym.ph'
+        },
+        facilities: [
+            { icon: 'fa-dumbbell', name: 'Weight Training Area' },
+            { icon: 'fa-person-running', name: 'Cardio Zone' },
+            { icon: 'fa-square-parking', name: 'Parking Available' },
+            { icon: 'fa-user', name: 'Personal Training' },
+            { icon: 'fa-shower', name: 'Shower Facilities' },
+            { icon: 'fa-fan', name: 'Climate Control' }
+        ],
+        pricing: [
+            { duration: 'Daily', amount: '₱120', period: 'per day' },
+            { duration: 'Monthly', amount: '₱1,000', period: 'per month' },
+            { duration: '3 Months', amount: '₱2,700', period: 'one-time' },
+            { duration: '6 Months', amount: '₱5,100', period: 'one-time' }
+        ]
+    },
+    'k-fitness': {
+        name: 'K-Fitness Mandaue',
+        image: 'images/KFitnessThumbnail.jpg',
+        rating: 4.0,
+        reviewCount: '(189 reviews)',
+        location: 'AS Fortuna St, Mandaue City, Cebu',
+        description: 'K-Fitness Mandaue is a modern 24/7 fitness facility designed for the serious fitness enthusiast. With round-the-clock access, members can work out on their own schedule. The gym features cutting-edge equipment, certified personal trainers, and a variety of training programs tailored to different fitness levels. The spacious facility includes dedicated areas for strength training, cardio, and functional fitness.',
+        hours: {
+            'All Days': 'Open 24/7',
+            'Staffed Hours': '6:00 AM - 10:00 PM'
+        },
+        contact: {
+            phone: '(032) 346-5432',
+            email: 'mandaue@kfitness.ph',
+            website: 'www.kfitness.ph'
+        },
+        facilities: [
+            { icon: 'fa-clock', name: '24/7 Access' },
+            { icon: 'fa-dumbbell', name: 'Modern Equipment' },
+            { icon: 'fa-user-tie', name: 'Certified Trainers' },
+            { icon: 'fa-square-parking', name: 'Secure Parking' },
+            { icon: 'fa-wifi', name: 'High-Speed WiFi' },
+            { icon: 'fa-camera', name: 'CCTV Security' },
+            { icon: 'fa-shirt', name: 'Premium Lockers' },
+            { icon: 'fa-fan', name: 'Air Conditioned' }
+        ],
+        pricing: [
+            { duration: 'Monthly', amount: '₱2,500', period: 'per month' },
+            { duration: '3 Months', amount: '₱6,900', period: 'one-time' },
+            { duration: '6 Months', amount: '₱13,200', period: 'one-time' },
+            { duration: 'Annual', amount: '₱24,000', period: 'one-time' }
+        ]
+    },
+    'anytime-fitness-itpark': {
+        name: 'Anytime Fitness - IT Park',
+        image: 'images/AnytimeFitnessItParkThumbnail.jpg',
+        rating: 4.1,
+        reviewCount: '(456 reviews)',
+        location: 'JM Del Mar Street, Cebu IT Park, Lahug, Cebu City',
+        description: 'Anytime Fitness IT Park is part of the world\'s largest co-ed gym chain, offering premium 24/7 access and exceptional service. Located in the bustling IT Park district, this facility is perfect for professionals seeking convenience. Members enjoy access to over 5,000 Anytime Fitness locations worldwide, professional coaching, group classes, and state-of-the-art equipment. The supportive community atmosphere makes it ideal for all fitness levels.',
+        hours: {
+            'Member Access': 'Open 24/7',
+            'Staff Available': '9:00 AM - 8:00 PM (Mon-Fri)',
+            'Weekend Staff': '9:00 AM - 5:00 PM (Sat-Sun)'
+        },
+        contact: {
+            phone: '(032) 520-1234',
+            email: 'itpark@anytimefitness.ph',
+            website: 'www.anytimefitness.ph/itpark'
+        },
+        facilities: [
+            { icon: 'fa-clock', name: '24/7 Club Access' },
+            { icon: 'fa-globe', name: 'Global Access' },
+            { icon: 'fa-users', name: 'Group Training' },
+            { icon: 'fa-dumbbell', name: 'Premium Equipment' },
+            { icon: 'fa-user-tie', name: 'Professional Coaches' },
+            { icon: 'fa-heart', name: 'Heart Rate Training' },
+            { icon: 'fa-mobile', name: 'App Integration' },
+            { icon: 'fa-shower', name: 'Clean Facilities' }
+        ],
+        pricing: [
+            { duration: 'Monthly', amount: '₱2,500', period: 'per month' },
+            { duration: '6 Months', amount: '₱13,500', period: 'one-time' },
+            { duration: 'Annual', amount: '₱24,500', period: 'one-time' }
+        ]
+    },
+    'conquer-fitness': {
+        name: 'Conquer Fitness Gym - Liloan',
+        image: 'images/ConquerFitnessGymThumbnail.jpg',
+        rating: 4.2,
+        reviewCount: '(234 reviews)',
+        location: 'Poblacion, Liloan, Cebu',
+        description: 'Conquer Fitness Gym in Liloan is a well-established fitness center known for its excellent facilities and supportive community atmosphere. The gym offers a comprehensive range of equipment, group fitness classes, personal training, and wellness amenities including sauna. With experienced trainers and a focus on personalized fitness programs, Conquer Fitness helps members achieve sustainable results in a motivating environment.',
+        hours: {
+            'Monday - Friday': '5:00 AM - 10:00 PM',
+            'Saturday': '6:00 AM - 9:00 PM',
+            'Sunday': '7:00 AM - 8:00 PM'
+        },
+        contact: {
+            phone: '(032) 424-6789',
+            email: 'info@conquerfitness.ph',
+            website: 'www.conquerfitness.ph'
+        },
+        facilities: [
+            { icon: 'fa-dumbbell', name: 'Full Equipment' },
+            { icon: 'fa-users', name: 'Group Classes' },
+            { icon: 'fa-hot-tub-person', name: 'Sauna' },
+            { icon: 'fa-user', name: 'Personal Training' },
+            { icon: 'fa-square-parking', name: 'Free Parking' },
+            { icon: 'fa-mug-hot', name: 'Supplement Bar' },
+            { icon: 'fa-shirt', name: 'Locker Rooms' },
+            { icon: 'fa-wifi', name: 'WiFi Access' }
+        ],
+        pricing: [
+            { duration: 'Daily', amount: '₱150', period: 'per day' },
+            { duration: 'Monthly', amount: '₱1,500', period: 'per month' },
+            { duration: '3 Months', amount: '₱4,000', period: 'one-time' },
+            { duration: '6 Months', amount: '₱7,500', period: 'one-time' }
+        ]
+    },
+    'ripped-city': {
+        name: 'Ripped City Gym',
+        image: 'images/RippedCityGymThumbnail.jpg',
+        rating: 3.7,
+        reviewCount: '(127 reviews)',
+        location: 'CPG North Avenue, Tagbilaran City, Bohol',
+        description: 'Ripped City Gym in Tagbilaran is Bohol\'s premier fitness destination for serious bodybuilders and fitness enthusiasts. The gym features heavy-duty equipment, experienced trainers specializing in strength and conditioning, and a no-frills approach focused on results. With its hardcore training environment and supportive community, Ripped City attracts dedicated athletes and those committed to transforming their physique.',
+        hours: {
+            'Monday - Saturday': '6:00 AM - 10:00 PM',
+            'Sunday': '8:00 AM - 8:00 PM'
+        },
+        contact: {
+            phone: '(038) 501-2345',
+            email: 'rippedcity@gmail.com',
+            website: 'www.rippedcitygym.com'
+        },
+        facilities: [
+            { icon: 'fa-dumbbell', name: 'Heavy Equipment' },
+            { icon: 'fa-person-running', name: 'Cardio Machines' },
+            { icon: 'fa-user', name: 'Expert Trainers' },
+            { icon: 'fa-square-parking', name: 'Parking Space' },
+            { icon: 'fa-water', name: 'Water Station' },
+            { icon: 'fa-fan', name: 'Ventilation' }
+        ],
+        pricing: [
+            { duration: 'Daily', amount: '₱100', period: 'per day' },
+            { duration: 'Monthly', amount: '₱1,300', period: 'per month' },
+            { duration: '3 Months', amount: '₱3,500', period: 'one-time' },
+            { duration: '6 Months', amount: '₱6,500', period: 'one-time' }
+        ]
+    },
+    'bold-fitness': {
+        name: 'Bold Fitness Center',
+        image: 'images/BoldFitnessCenterThumbnail.jpg',
+        rating: 4.0,
+        reviewCount: '(198 reviews)',
+        location: 'Dampas District, Tagbilaran City, Bohol',
+        description: 'Bold Fitness Center is a modern, full-service fitness facility in Tagbilaran offering a balanced approach to health and wellness. The center features contemporary equipment, diverse group fitness classes including Zumba and yoga, personal training services, and a welcoming atmosphere for all fitness levels. Bold Fitness emphasizes community, proper form, and sustainable fitness habits for long-term health benefits.',
+        hours: {
+            'Monday - Friday': '5:30 AM - 10:00 PM',
+            'Saturday': '6:00 AM - 9:00 PM',
+            'Sunday': '7:00 AM - 7:00 PM'
+        },
+        contact: {
+            phone: '(038) 412-8765',
+            email: 'hello@boldfitness.ph',
+            website: 'www.boldfitness.ph'
+        },
+        facilities: [
+            { icon: 'fa-dumbbell', name: 'Modern Equipment' },
+            { icon: 'fa-users', name: 'Fitness Classes' },
+            { icon: 'fa-user-tie', name: 'Certified Trainers' },
+            { icon: 'fa-square-parking', name: 'Ample Parking' },
+            { icon: 'fa-child', name: 'Kids Area' },
+            { icon: 'fa-mug-hot', name: 'Cafe Lounge' },
+            { icon: 'fa-shirt', name: 'Changing Rooms' },
+            { icon: 'fa-wifi', name: 'Free WiFi' }
+        ],
+        pricing: [
+            { duration: 'Daily', amount: '₱150', period: 'per day' },
+            { duration: 'Monthly', amount: '₱2,500', period: 'per month' },
+            { duration: '3 Months', amount: '₱6,800', period: 'one-time' },
+            { duration: '6 Months', amount: '₱12,500', period: 'one-time' }
+        ]
+    },
+    'crossfit-subtero': {
+        name: 'Crossfit Subtero',
+        image: 'images/CrossfitSubteroThumbnail.jpg',
+        rating: 4.0,
+        reviewCount: '(176 reviews)',
+        location: 'Nivel Hills, Busay, Cebu City',
+        description: 'Crossfit Subtero is Cebu\'s premier CrossFit box, specializing in high-intensity functional training and community-driven fitness. This facility offers expert coaching in Olympic weightlifting, gymnastics, and metabolic conditioning. With scaled workouts for all fitness levels, Subtero creates a supportive environment where members push their limits together. The gym hosts regular competitions and emphasizes proper technique, nutrition, and recovery for optimal performance.',
+        hours: {
+            'Monday - Friday': '5:30 AM - 9:00 PM',
+            'Saturday': '7:00 AM - 6:00 PM',
+            'Sunday': '8:00 AM - 12:00 PM'
+        },
+        contact: {
+            phone: '(032) 238-9876',
+            email: 'coach@crossfitsubtero.com',
+            website: 'www.crossfitsubtero.com'
+        },
+        facilities: [
+            { icon: 'fa-dumbbell', name: 'CrossFit Equipment' },
+            { icon: 'fa-users', name: 'Group WODs' },
+            { icon: 'fa-user-tie', name: 'Level 1 Coaches' },
+            { icon: 'fa-trophy', name: 'Competition Prep' },
+            { icon: 'fa-square-parking', name: 'Parking Available' },
+            { icon: 'fa-shower', name: 'Shower Rooms' },
+            { icon: 'fa-apple-whole', name: 'Nutrition Coaching' },
+            { icon: 'fa-calendar', name: 'Class Scheduling' }
+        ],
+        pricing: [
+            { duration: 'Drop-In', amount: '₱500', period: 'per session' },
+            { duration: 'Monthly', amount: '₱3,500', period: 'per month' },
+            { duration: '3 Months', amount: '₱9,500', period: 'one-time' },
+            { duration: '6 Months', amount: '₱18,000', period: 'one-time' }
+        ]
+    }
+};
+
+// Modal Functions
+function openModal(gymId) {
+    const gym = gymDetails[gymId];
+    if (!gym) return;
+
+    // Populate modal content
+    document.getElementById('modalImage').src = gym.image;
+    document.getElementById('modalImage').alt = gym.name;
+    document.getElementById('modalGymName').textContent = gym.name;
+    document.getElementById('modalRating').textContent = gym.rating;
+    document.getElementById('modalReviewCount').textContent = gym.reviewCount;
+    document.getElementById('modalLocation').textContent = gym.location;
+    document.getElementById('modalDescription').textContent = gym.description;
+
+    // Populate hours
+    const hoursHTML = Object.entries(gym.hours).map(([day, time]) => `
+        <div class="hours-item">
+            <span class="hours-day">${day}</span>
+            <span class="hours-time">${time}</span>
+        </div>
+    `).join('');
+    document.getElementById('modalHours').innerHTML = hoursHTML;
+
+    // Populate contact
+    const contactHTML = `
+        <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>${gym.contact.phone}</span>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>${gym.contact.email}</span>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-globe"></i>
+            <span>${gym.contact.website}</span>
+        </div>
+    `;
+    document.getElementById('modalContact').innerHTML = contactHTML;
+
+    // Populate facilities
+    const facilitiesHTML = gym.facilities.map(facility => `
+        <div class="facility-item">
+            <i class="fas ${facility.icon}"></i>
+            <span>${facility.name}</span>
+        </div>
+    `).join('');
+    document.getElementById('modalFacilities').innerHTML = facilitiesHTML;
+
+    // Populate pricing
+    const pricingHTML = gym.pricing.map(price => `
+        <div class="pricing-card">
+            <div class="pricing-duration">${price.duration}</div>
+            <div class="pricing-amount">${price.amount}</div>
+            <div class="pricing-period">${price.period}</div>
+        </div>
+    `).join('');
+    document.getElementById('modalPricing').innerHTML = pricingHTML;
+
+    // Show modal
+    const modal = document.getElementById('gymModal');
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
+
+function closeModal() {
+    const modal = document.getElementById('gymModal');
+    modal.classList.remove('show');
+    document.body.style.overflow = 'auto'; // Restore scrolling
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    const modal = document.getElementById('gymModal');
+    if (event.target === modal) {
+        closeModal();
+    }
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeModal();
+    }
+});

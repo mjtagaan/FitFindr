@@ -171,7 +171,7 @@
                                         <span class="price-label">Starting at</span>
                                         <span class="price-amount">₱800/month</span> <!-- PRICE -->
                                     </div>
-                                    <button class="view-details-btn">View Details</button>
+                                    <button class="view-details-btn" onclick="openModal('yokoks-consolacion')">View Details</button>
                                 </div>
                             </div>
                         </div>
@@ -207,7 +207,7 @@
                                         <span class="price-label">Starting at</span>
                                         <span class="price-amount">₱2,000/month</span> <!-- PRICE -->
                                     </div>
-                                    <button class="view-details-btn">View Details</button>
+                                    <button class="view-details-btn" onclick="openModal('holiday-gym-spa')">View Details</button>
                                 </div>
                             </div>
                         </div>
@@ -239,7 +239,7 @@
                                         <span class="price-label">Starting at</span>
                                         <span class="price-amount">₱1,000/month</span> <!-- PRICE -->
                                     </div>
-                                    <button class="view-details-btn">View Details</button>
+                                    <button class="view-details-btn" onclick="openModal('yokoks-rlandon')">View Details</button>
                                 </div>
                             </div>
                         </div>
@@ -272,7 +272,7 @@
                                         <span class="price-label">Starting at</span>
                                         <span class="price-amount">₱2,500/month</span> <!-- PRICE -->
                                     </div>
-                                    <button class="view-details-btn">View Details</button>
+                                    <button class="view-details-btn" onclick="openModal('k-fitness')">View Details</button>
                                 </div>
                             </div>
                         </div>
@@ -305,7 +305,7 @@
                                         <span class="price-label">Starting at</span>
                                         <span class="price-amount">₱2,500/month</span> <!-- PRICE -->
                                     </div>
-                                    <button class="view-details-btn">View Details</button>
+                                    <button class="view-details-btn" onclick="openModal('anytime-fitness-itpark')">View Details</button>
                                 </div>
                             </div>
                         </div>
@@ -339,7 +339,7 @@
                                         <span class="price-label">Starting at</span>
                                         <span class="price-amount">₱1,500/month</span> <!-- PRICE -->
                                     </div>
-                                    <button class="view-details-btn">View Details</button>
+                                    <button class="view-details-btn" onclick="openModal('conquer-fitness')">View Details</button>
                                 </div>
                             </div>
                         </div>
@@ -371,7 +371,7 @@
                                         <span class="price-label">Starting at</span>
                                         <span class="price-amount">₱1,300/month</span> <!-- PRICE -->
                                     </div>
-                                    <button class="view-details-btn">View Details</button>
+                                    <button class="view-details-btn" onclick="openModal('ripped-city')">View Details</button>
                                 </div>
                             </div>
                         </div>
@@ -404,7 +404,7 @@
                                         <span class="price-label">Starting at</span>
                                         <span class="price-amount">₱2,500/month</span> <!-- PRICE -->
                                     </div>
-                                    <button class="view-details-btn">View Details</button>
+                                    <button class="view-details-btn" onclick="openModal('bold-fitness')">View Details</button>
                                 </div>
                             </div>
                         </div>
@@ -437,7 +437,7 @@
                                         <span class="price-label">Starting at</span>
                                         <span class="price-amount">₱3,500/month</span> <!-- PRICE -->
                                     </div>
-                                    <button class="view-details-btn">View Details</button>
+                                    <button class="view-details-btn" onclick="openModal('crossfit-subtero')">View Details</button>
                                 </div>
                             </div>
                         </div>
@@ -446,6 +446,69 @@
             </div>
         </section>
     </main>
+
+    <!-- Gym Details Modal -->
+    <div id="gymModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="modal-body">
+                <div class="modal-header-section">
+                    <div class="modal-image-container">
+                        <img id="modalImage" src="" alt="Gym Image">
+                    </div>
+                    <div class="modal-title-section">
+                        <h2 id="modalGymName"></h2>
+                        <div class="modal-rating">
+                            <i class="fas fa-star"></i>
+                            <span id="modalRating"></span>
+                            <span id="modalReviewCount"></span>
+                        </div>
+                        <div class="modal-location">
+                            <i class="fas fa-location-dot"></i>
+                            <span id="modalLocation"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-info-grid">
+                    <div class="modal-section">
+                        <h3><i class="fas fa-clock"></i> Opening Hours</h3>
+                        <div id="modalHours" class="hours-list"></div>
+                    </div>
+
+                    <div class="modal-section">
+                        <h3><i class="fas fa-phone"></i> Contact Information</h3>
+                        <div id="modalContact" class="contact-info"></div>
+                    </div>
+
+                    <div class="modal-section full-width">
+                        <h3><i class="fas fa-dumbbell"></i> Facilities & Amenities</h3>
+                        <div id="modalFacilities" class="facilities-grid"></div>
+                    </div>
+
+                    <div class="modal-section full-width">
+                        <h3><i class="fas fa-peso-sign"></i> Membership Pricing</h3>
+                        <div id="modalPricing" class="pricing-options"></div>
+                    </div>
+
+                    <div class="modal-section full-width">
+                        <h3><i class="fas fa-info-circle"></i> About</h3>
+                        <p id="modalDescription"></p>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="btn-primary" onclick="alert('Booking feature coming soon!')">
+                        <i class="fas fa-calendar-check"></i> Book a Visit
+                    </button>
+                    <button class="btn-secondary" onclick="closeModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="footer-container">
