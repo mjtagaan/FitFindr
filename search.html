@@ -145,9 +145,15 @@
 
                     <div class="gym-results" id="gymResults">
                         <!-- GYM 1: Yokoks Gym Consolacion - CEBU -->
-                        <div class="gym-result-card" data-city="cebu" data-price="800" data-rating="3.0">
+                        <div class="gym-result-card" data-city="cebu" data-price="800" data-rating="3.0" data-gym-id="yokoks-consolacion">
                             <div class="gym-image">
                                 <img src="images/YokoksGymConsolacionThumbnail.jpg" alt="Yokoks Gym Consolacion">
+                                <div class="compare-checkbox-container">
+                                    <input type="checkbox" class="compare-checkbox" id="compare-yokoks-consolacion" onchange="toggleCompare('yokoks-consolacion')">
+                                    <label for="compare-yokoks-consolacion" class="compare-label">
+                                        <i class="fas fa-code-compare"></i> Compare
+                                    </label>
+                                </div>
                             </div>
                             <div class="gym-details">
                                 <div class="gym-header">
@@ -177,10 +183,16 @@
                         </div>
 
                         <!-- GYM 2: Holiday Gym and Spa - CEBU -->
-                        <div class="gym-result-card" data-city="cebu" data-price="2000" data-rating="4.8">
+                        <div class="gym-result-card" data-city="cebu" data-price="2000" data-rating="4.8" data-gym-id="holiday-gym-spa">
                             <div class="gym-image">
                                 <img src="images/HolidayGymAndSpaThumbnail.jpg" alt="Holiday Gym and Spa">
                                 <div class="gym-badge premium">Premium</div>
+                                <div class="compare-checkbox-container">
+                                    <input type="checkbox" class="compare-checkbox" id="compare-holiday-gym-spa" onchange="toggleCompare('holiday-gym-spa')">
+                                    <label for="compare-holiday-gym-spa" class="compare-label">
+                                        <i class="fas fa-code-compare"></i> Compare
+                                    </label>
+                                </div>
                             </div>
                             <div class="gym-details">
                                 <div class="gym-header">
@@ -213,9 +225,15 @@
                         </div>
 
                         <!-- GYM 3: Yokoks Gym R.Landon Street - CEBU -->
-                        <div class="gym-result-card" data-city="cebu" data-price="1000" data-rating="3.0">
+                        <div class="gym-result-card" data-city="cebu" data-price="1000" data-rating="3.0" data-gym-id="yokoks-rlandon">
                             <div class="gym-image">
                                 <img src="images/YokoksGymRLandonStreetThumbnail.jpg" alt="Yokoks Gym R.Landon Street">
+                                <div class="compare-checkbox-container">
+                                    <input type="checkbox" class="compare-checkbox" id="compare-yokoks-rlandon" onchange="toggleCompare('yokoks-rlandon')">
+                                    <label for="compare-yokoks-rlandon" class="compare-label">
+                                        <i class="fas fa-code-compare"></i> Compare
+                                    </label>
+                                </div>
                             </div>
                             <div class="gym-details">
                                 <div class="gym-header">
@@ -245,9 +263,15 @@
                         </div>
 
                         <!-- GYM 4: K-Fitness - CEBU -->
-                        <div class="gym-result-card" data-city="cebu" data-price="2500" data-rating="4.0">
+                        <div class="gym-result-card" data-city="cebu" data-price="2500" data-rating="4.0" data-gym-id="k-fitness">
                             <div class="gym-image">
                                 <img src="images/KFitnessThumbnail.jpg" alt="K-Fitness">
+                                <div class="compare-checkbox-container">
+                                    <input type="checkbox" class="compare-checkbox" id="compare-k-fitness" onchange="toggleCompare('k-fitness')">
+                                    <label for="compare-k-fitness" class="compare-label">
+                                        <i class="fas fa-code-compare"></i> Compare
+                                    </label>
+                                </div>
                             </div>
                             <div class="gym-details">
                                 <div class="gym-header">
@@ -277,10 +301,16 @@
                             </div>
                         </div>
                         <!-- GYM 6: Anytime Fitness - IT Park - CEBU -->
-                        <div class="gym-result-card" data-city="cebu" data-price="2500" data-rating="4.1">
+                        <div class="gym-result-card" data-city="cebu" data-price="2500" data-rating="4.1" data-gym-id="anytime-fitness-itpark">
                             <div class="gym-image">
                                 <img src="images/AnytimeFitnessItParkThumbnail.jpg" alt="Anytime Fitness IT Park">
                                 <div class="gym-badge premium">Premium</div>
+                                <div class="compare-checkbox-container">
+                                    <input type="checkbox" class="compare-checkbox" id="compare-anytime-fitness-itpark" onchange="toggleCompare('anytime-fitness-itpark')">
+                                    <label for="compare-anytime-fitness-itpark" class="compare-label">
+                                        <i class="fas fa-code-compare"></i> Compare
+                                    </label>
+                                </div>
                             </div>
                             <div class="gym-details">
                                 <div class="gym-header">
@@ -311,9 +341,15 @@
                         </div>
 
                         <!-- GYM 7: Conquer Fitness Gym - Liloan - CEBU -->
-                        <div class="gym-result-card" data-city="cebu" data-price="1300" data-rating="4.2">
+                        <div class="gym-result-card" data-city="cebu" data-price="1300" data-rating="4.2" data-gym-id="conquer-fitness">
                             <div class="gym-image">
                                 <img src="images/ConquerFitnessGymThumbnail.jpg" alt="Conquer Fitness Gym">
+                                <div class="compare-checkbox-container">
+                                    <input type="checkbox" class="compare-checkbox" id="compare-conquer-fitness" onchange="toggleCompare('conquer-fitness')">
+                                    <label for="compare-conquer-fitness" class="compare-label">
+                                        <i class="fas fa-code-compare"></i> Compare
+                                    </label>
+                                </div>
                             </div>
                             <div class="gym-details">
                                 <div class="gym-header">
@@ -345,9 +381,15 @@
                         </div>
 
                         <!-- GYM 8: Ripped City Gym - BOHOL -->
-                        <div class="gym-result-card" data-city="bohol" data-price="1500" data-rating="3.7">
+                        <div class="gym-result-card" data-city="bohol" data-price="1500" data-rating="3.7" data-gym-id="ripped-city">
                             <div class="gym-image">
                                 <img src="images/RippedCityGymThumbnail.jpg" alt="Ripped City Gym">
+                                <div class="compare-checkbox-container">
+                                    <input type="checkbox" class="compare-checkbox" id="compare-ripped-city" onchange="toggleCompare('ripped-city')">
+                                    <label for="compare-ripped-city" class="compare-label">
+                                        <i class="fas fa-code-compare"></i> Compare
+                                    </label>
+                                </div>
                             </div>
                             <div class="gym-details">
                                 <div class="gym-header">
@@ -377,9 +419,15 @@
                         </div>
 
                         <!-- GYM 9: Bold Fitness Center - BOHOL -->
-                        <div class="gym-result-card" data-city="bohol" data-price="2500" data-rating="4.0">
+                        <div class="gym-result-card" data-city="bohol" data-price="2500" data-rating="4.0" data-gym-id="bold-fitness">
                             <div class="gym-image">
                                 <img src="images/BoldFitnessCenterThumbnail.jpg" alt="Bold Fitness Gym">
+                                <div class="compare-checkbox-container">
+                                    <input type="checkbox" class="compare-checkbox" id="compare-bold-fitness" onchange="toggleCompare('bold-fitness')">
+                                    <label for="compare-bold-fitness" class="compare-label">
+                                        <i class="fas fa-code-compare"></i> Compare
+                                    </label>
+                                </div>
                             </div>
                             <div class="gym-details">
                                 <div class="gym-header">
@@ -410,9 +458,15 @@
                         </div>
 
                         <!-- GYM 10: Crossfit Subtero - CEBU -->
-                        <div class="gym-result-card" data-city="cebu" data-price="3500" data-rating="4.0">
+                        <div class="gym-result-card" data-city="cebu" data-price="3500" data-rating="4.0" data-gym-id="crossfit-subtero">
                             <div class="gym-image">
                                 <img src="images/CrossfitSubteroThumbnail.jpg" alt="Crossfit Gym Subtero">
+                                <div class="compare-checkbox-container">
+                                    <input type="checkbox" class="compare-checkbox" id="compare-crossfit-subtero" onchange="toggleCompare('crossfit-subtero')">
+                                    <label for="compare-crossfit-subtero" class="compare-label">
+                                        <i class="fas fa-code-compare"></i> Compare
+                                    </label>
+                                </div>
                             </div>
                             <div class="gym-details">
                                 <div class="gym-header">
@@ -446,6 +500,43 @@
             </div>
         </section>
     </main>
+
+    <!-- Comparison Bar -->
+    <div id="comparisonBar" class="comparison-bar">
+        <div class="comparison-bar-content">
+            <div class="comparison-selected">
+                <span class="comparison-count">0 gyms selected</span>
+                <div id="comparisonTags" class="comparison-tags"></div>
+            </div>
+            <div class="comparison-actions">
+                <button class="btn-compare" onclick="openComparison()" disabled>
+                    <i class="fas fa-code-compare"></i> Compare
+                </button>
+                <button class="btn-clear-compare" onclick="clearComparison()">
+                    <i class="fas fa-times"></i> Clear
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comparison Modal -->
+    <div id="comparisonModal" class="modal comparison-modal">
+        <div class="modal-content comparison-content">
+            <button class="modal-close" onclick="closeComparison()">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="modal-body">
+                <h2 class="comparison-title">
+                    <i class="fas fa-code-compare"></i> Gym Comparison
+                </h2>
+                
+                <div id="comparisonGrid" class="comparison-grid">
+                    <!-- Comparison data will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Gym Details Modal -->
     <div id="gymModal" class="modal">

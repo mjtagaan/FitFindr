@@ -547,5 +547,208 @@ window.onclick = function(event) {
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
         closeModal();
+        closeComparison();
     }
 });
+
+// Comparison Feature
+let selectedGyms = [];
+const MAX_COMPARE = 3;
+
+function toggleCompare(gymId) {
+    const checkbox = document.getElementById(`compare-${gymId}`);
+    
+    if (checkbox.checked) {
+        if (selectedGyms.length >= MAX_COMPARE) {
+            checkbox.checked = false;
+            alert(`You can only compare up to ${MAX_COMPARE} gyms at a time.`);
+            return;
+        }
+        selectedGyms.push(gymId);
+    } else {
+        selectedGyms = selectedGyms.filter(id => id !== gymId);
+    }
+    
+    updateComparisonBar();
+}
+
+function updateComparisonBar() {
+    const bar = document.getElementById('comparisonBar');
+    const countSpan = document.querySelector('.comparison-count');
+    const tagsContainer = document.getElementById('comparisonTags');
+    const compareBtn = document.querySelector('.btn-compare');
+    
+    if (selectedGyms.length === 0) {
+        bar.classList.remove('show');
+        compareBtn.disabled = true;
+    } else {
+        bar.classList.add('show');
+        compareBtn.disabled = selectedGyms.length < 2;
+        
+        countSpan.textContent = `${selectedGyms.length} gym${selectedGyms.length !== 1 ? 's' : ''} selected`;
+        
+        // Update tags
+        tagsContainer.innerHTML = selectedGyms.map(gymId => {
+            const gym = gymDetails[gymId];
+            return `
+                <div class="comparison-tag">
+                    <span>${gym.name}</span>
+                    <button onclick="removeFromComparison('${gymId}')" class="tag-remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+        }).join('');
+    }
+}
+
+function removeFromComparison(gymId) {
+    const checkbox = document.getElementById(`compare-${gymId}`);
+    if (checkbox) checkbox.checked = false;
+    selectedGyms = selectedGyms.filter(id => id !== gymId);
+    updateComparisonBar();
+}
+
+function clearComparison() {
+    selectedGyms.forEach(gymId => {
+        const checkbox = document.getElementById(`compare-${gymId}`);
+        if (checkbox) checkbox.checked = false;
+    });
+    selectedGyms = [];
+    updateComparisonBar();
+}
+
+function openComparison() {
+    if (selectedGyms.length < 2) {
+        alert('Please select at least 2 gyms to compare.');
+        return;
+    }
+    
+    const modal = document.getElementById('comparisonModal');
+    const grid = document.getElementById('comparisonGrid');
+    
+    // Build comparison table
+    const gyms = selectedGyms.map(id => gymDetails[id]);
+    
+    let comparisonHTML = `
+        <div class="comparison-table">
+            <!-- Headers with gym names -->
+            <div class="comparison-row comparison-header-row">
+                <div class="comparison-cell label-cell"></div>
+                ${gyms.map(gym => `
+                    <div class="comparison-cell gym-header-cell">
+                        <img src="${gym.image}" alt="${gym.name}">
+                        <h3>${gym.name}</h3>
+                        <div class="gym-rating">
+                            <i class="fas fa-star"></i>
+                            <span>${gym.rating}</span>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+            
+            <!-- Location -->
+            <div class="comparison-row">
+                <div class="comparison-cell label-cell">
+                    <i class="fas fa-location-dot"></i> Location
+                </div>
+                ${gyms.map(gym => `
+                    <div class="comparison-cell">${gym.location}</div>
+                `).join('')}
+            </div>
+            
+            <!-- Price -->
+            <div class="comparison-row">
+                <div class="comparison-cell label-cell">
+                    <i class="fas fa-peso-sign"></i> Monthly Price
+                </div>
+                ${gyms.map(gym => `
+                    <div class="comparison-cell">
+                        <strong>${gym.pricing.find(p => p.duration === 'Monthly')?.amount || 'N/A'}</strong>
+                    </div>
+                `).join('')}
+            </div>
+            
+            <!-- Hours -->
+            <div class="comparison-row">
+                <div class="comparison-cell label-cell">
+                    <i class="fas fa-clock"></i> Hours
+                </div>
+                ${gyms.map(gym => `
+                    <div class="comparison-cell">
+                        ${Object.entries(gym.hours).map(([day, time]) => 
+                            `<div class="hours-compact">${day}: ${time}</div>`
+                        ).join('')}
+                    </div>
+                `).join('')}
+            </div>
+            
+            <!-- Contact -->
+            <div class="comparison-row">
+                <div class="comparison-cell label-cell">
+                    <i class="fas fa-phone"></i> Phone
+                </div>
+                ${gyms.map(gym => `
+                    <div class="comparison-cell">${gym.contact.phone}</div>
+                `).join('')}
+            </div>
+            
+            <!-- Facilities -->
+            <div class="comparison-row">
+                <div class="comparison-cell label-cell">
+                    <i class="fas fa-dumbbell"></i> Facilities
+                </div>
+                ${gyms.map(gym => `
+                    <div class="comparison-cell">
+                        <div class="facilities-compact">
+                            ${gym.facilities.map(f => `
+                                <span class="facility-badge">
+                                    <i class="fas ${f.icon}"></i> ${f.name}
+                                </span>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+            
+            <!-- All Pricing Options -->
+            <div class="comparison-row">
+                <div class="comparison-cell label-cell">
+                    <i class="fas fa-tags"></i> All Prices
+                </div>
+                ${gyms.map(gym => `
+                    <div class="comparison-cell">
+                        ${gym.pricing.map(p => `
+                            <div class="price-option">
+                                <strong>${p.duration}:</strong> ${p.amount}
+                            </div>
+                        `).join('')}
+                    </div>
+                `).join('')}
+            </div>
+            
+            <!-- Actions -->
+            <div class="comparison-row comparison-actions-row">
+                <div class="comparison-cell label-cell"></div>
+                ${gyms.map(gym => `
+                    <div class="comparison-cell">
+                        <button class="btn-view-details" onclick="closeComparison(); openModal('${selectedGyms[gyms.indexOf(gym)]}')">
+                            View Full Details
+                        </button>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+    
+    grid.innerHTML = comparisonHTML;
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeComparison() {
+    const modal = document.getElementById('comparisonModal');
+    modal.classList.remove('show');
+    document.body.style.overflow = 'auto';
+}
+
