@@ -347,8 +347,4 @@ Created as a school project to demonstrate:
 
 ## 📄 License
 
-<<<<<<< HEAD
 This is a school project. Feel free to use as reference or learning material.
-=======
-This is a school project. Feel free to use as reference or learning material.
->>>>>>> 1e1a4e71d7b0240ee0623e28e0e28a3f25e77249
