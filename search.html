@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/search.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
     <header class="header">
@@ -131,18 +132,45 @@
                         <div class="results-count">
                             <h2>Found <span id="gymCount">12</span> Gyms</h2>
                         </div>
-                        <div class="sort-options">
-                            <label for="sortBy">Sort by:</label>
-                            <select id="sortBy" class="sort-select" onchange="sortGyms()">
-                                <option value="relevance">Relevance</option>
-                                <option value="price-low">Price: Low to High</option>
-                                <option value="price-high">Price: High to Low</option>
-                                <option value="rating">Highest Rated</option>
-                                <option value="distance">Nearest</option>
-                            </select>
+                        <div class="view-controls">
+                            <div class="view-toggle">
+                                <button class="view-btn active" data-view="list" onclick="toggleView('list')">
+                                    <i class="fas fa-list"></i> List
+                                </button>
+                                <button class="view-btn" data-view="map" onclick="toggleView('map')">
+                                    <i class="fas fa-map-marked-alt"></i> Map
+                                </button>
+                            </div>
+                            <div class="sort-options">
+                                <label for="sortBy">Sort by:</label>
+                                <select id="sortBy" class="sort-select" onchange="sortGyms()">
+                                    <option value="relevance">Relevance</option>
+                                    <option value="price-low">Price: Low to High</option>
+                                    <option value="price-high">Price: High to Low</option>
+                                    <option value="rating">Highest Rated</option>
+                                    <option value="distance">Nearest</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
+                    <!-- Map View -->
+                    <div class="map-container" id="mapView" style="display: none;">
+                        <div id="gymMap"></div>
+                        <div class="map-legend">
+                            <h4><i class="fas fa-info-circle"></i> Map Legend</h4>
+                            <div class="legend-item">
+                                <span class="legend-marker cebu"></span>
+                                <span>Cebu Gyms</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-marker bohol"></span>
+                                <span>Bohol Gyms</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- List View -->
                     <div class="gym-results" id="gymResults">
                         <!-- GYM 1: Yokoks Gym Consolacion - CEBU -->
                         <div class="gym-result-card" data-city="cebu" data-price="800" data-rating="3.0" data-gym-id="yokoks-consolacion">
@@ -581,13 +609,13 @@
                     </div>
 
                     <div class="modal-section full-width">
-                        <h3><i class="fas fa-peso-sign"></i> Membership Pricing</h3>
-                        <div id="modalPricing" class="pricing-options"></div>
+                        <h3><i class="fas fa-map-marked-alt"></i> Location Map</h3>
+                        <div id="modalMap" class="modal-map"></div>
                     </div>
 
                     <div class="modal-section full-width">
-                        <h3><i class="fas fa-info-circle"></i> About</h3>
-                        <p id="modalDescription"></p>
+                        <h3><i class="fas fa-peso-sign"></i> Membership Pricing</h3>
+                        <div id="modalPricing" class="pricing-options"></div>
                     </div>
                 </div>
 
@@ -622,6 +650,7 @@
         </div>
     </footer>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="js/search.js"></script>
 </body>
 </html>

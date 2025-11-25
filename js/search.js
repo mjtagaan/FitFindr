@@ -170,6 +170,7 @@ const gymDetails = {
         rating: 3.0,
         reviewCount: '(45 reviews)',
         location: 'Cansaga, Consolacion, Cebu',
+        coordinates: { lat: 10.3767, lng: 123.9563 },
         description: 'Yokoks Gym Consolacion is a community-focused fitness center offering essential workout equipment and personal training services. Known for its friendly atmosphere and affordable rates, this gym provides a comfortable environment for both beginners and experienced fitness enthusiasts. The facility features modern equipment and experienced trainers dedicated to helping you achieve your fitness goals.',
         hours: {
             'Monday - Friday': '6:00 AM - 10:00 PM',
@@ -202,6 +203,7 @@ const gymDetails = {
         rating: 4.8,
         reviewCount: '(312 reviews)',
         location: 'Gov. M. Cuenco Ave, Banilad, Cebu City',
+        coordinates: { lat: 10.3356, lng: 123.9132 },
         description: 'Holiday Gym and Spa is a premium wellness destination that combines state-of-the-art fitness facilities with luxurious spa services. This upscale establishment offers a comprehensive approach to health and wellness, featuring top-tier equipment, professional trainers, therapeutic spa treatments, swimming pool, and sauna facilities. Perfect for those seeking a holistic fitness and relaxation experience in an elegant environment.',
         hours: {
             'Monday - Friday': '5:00 AM - 11:00 PM',
@@ -237,6 +239,7 @@ const gymDetails = {
         rating: 3.0,
         reviewCount: '(68 reviews)',
         location: 'R.Landon Street, Cebu City',
+        coordinates: { lat: 10.3115, lng: 123.8935 },
         description: 'Located in the heart of Cebu City, Yokoks Gym R.Landon Street provides a convenient fitness solution for busy professionals and residents in the area. This branch features comprehensive training equipment, personal training services, and ample parking space. The gym maintains a clean, well-maintained facility with experienced staff ready to assist members in achieving their fitness objectives.',
         hours: {
             'Monday - Friday': '6:00 AM - 10:00 PM',
@@ -269,6 +272,7 @@ const gymDetails = {
         rating: 4.0,
         reviewCount: '(189 reviews)',
         location: 'AS Fortuna St, Mandaue City, Cebu',
+        coordinates: { lat: 10.3231, lng: 123.9313 },
         description: 'K-Fitness Mandaue is a modern 24/7 fitness facility designed for the serious fitness enthusiast. With round-the-clock access, members can work out on their own schedule. The gym features cutting-edge equipment, certified personal trainers, and a variety of training programs tailored to different fitness levels. The spacious facility includes dedicated areas for strength training, cardio, and functional fitness.',
         hours: {
             'All Days': 'Open 24/7',
@@ -302,6 +306,7 @@ const gymDetails = {
         rating: 4.1,
         reviewCount: '(456 reviews)',
         location: 'JM Del Mar Street, Cebu IT Park, Lahug, Cebu City',
+        coordinates: { lat: 10.3234, lng: 123.9048 },
         description: 'Anytime Fitness IT Park is part of the world\'s largest co-ed gym chain, offering premium 24/7 access and exceptional service. Located in the bustling IT Park district, this facility is perfect for professionals seeking convenience. Members enjoy access to over 5,000 Anytime Fitness locations worldwide, professional coaching, group classes, and state-of-the-art equipment. The supportive community atmosphere makes it ideal for all fitness levels.',
         hours: {
             'Member Access': 'Open 24/7',
@@ -335,6 +340,7 @@ const gymDetails = {
         rating: 4.2,
         reviewCount: '(234 reviews)',
         location: 'Poblacion, Liloan, Cebu',
+        coordinates: { lat: 10.3788, lng: 123.9941 },
         description: 'Conquer Fitness Gym in Liloan is a well-established fitness center known for its excellent facilities and supportive community atmosphere. The gym offers a comprehensive range of equipment, group fitness classes, personal training, and wellness amenities including sauna. With experienced trainers and a focus on personalized fitness programs, Conquer Fitness helps members achieve sustainable results in a motivating environment.',
         hours: {
             'Monday - Friday': '5:00 AM - 10:00 PM',
@@ -369,6 +375,7 @@ const gymDetails = {
         rating: 3.7,
         reviewCount: '(127 reviews)',
         location: 'CPG North Avenue, Tagbilaran City, Bohol',
+        coordinates: { lat: 9.6477, lng: 123.8516 },
         description: 'Ripped City Gym in Tagbilaran is Bohol\'s premier fitness destination for serious bodybuilders and fitness enthusiasts. The gym features heavy-duty equipment, experienced trainers specializing in strength and conditioning, and a no-frills approach focused on results. With its hardcore training environment and supportive community, Ripped City attracts dedicated athletes and those committed to transforming their physique.',
         hours: {
             'Monday - Saturday': '6:00 AM - 10:00 PM',
@@ -400,6 +407,7 @@ const gymDetails = {
         rating: 4.0,
         reviewCount: '(198 reviews)',
         location: 'Dampas District, Tagbilaran City, Bohol',
+        coordinates: { lat: 9.6513, lng: 123.8526 },
         description: 'Bold Fitness Center is a modern, full-service fitness facility in Tagbilaran offering a balanced approach to health and wellness. The center features contemporary equipment, diverse group fitness classes including Zumba and yoga, personal training services, and a welcoming atmosphere for all fitness levels. Bold Fitness emphasizes community, proper form, and sustainable fitness habits for long-term health benefits.',
         hours: {
             'Monday - Friday': '5:30 AM - 10:00 PM',
@@ -433,7 +441,8 @@ const gymDetails = {
         image: 'images/CrossfitSubteroThumbnail.jpg',
         rating: 4.0,
         reviewCount: '(176 reviews)',
-        location: 'Nivel Hills, Busay, Cebu City',
+        location: 'Jamestown, Mantawi Dr, Mandaue',
+        coordinates: { lat: 10.3445, lng: 123.9463 },
         description: 'Crossfit Subtero is Cebu\'s premier CrossFit box, specializing in high-intensity functional training and community-driven fitness. This facility offers expert coaching in Olympic weightlifting, gymnastics, and metabolic conditioning. With scaled workouts for all fitness levels, Subtero creates a supportive environment where members push their limits together. The gym hosts regular competitions and emphasizes proper technique, nutrition, and recovery for optimal performance.',
         hours: {
             'Monday - Friday': '5:30 AM - 9:00 PM',
@@ -476,7 +485,6 @@ function openModal(gymId) {
     document.getElementById('modalRating').textContent = gym.rating;
     document.getElementById('modalReviewCount').textContent = gym.reviewCount;
     document.getElementById('modalLocation').textContent = gym.location;
-    document.getElementById('modalDescription').textContent = gym.description;
 
     // Populate hours
     const hoursHTML = Object.entries(gym.hours).map(([day, time]) => `
@@ -522,6 +530,29 @@ function openModal(gymId) {
         </div>
     `).join('');
     document.getElementById('modalPricing').innerHTML = pricingHTML;
+
+    // Initialize modal map
+    setTimeout(() => {
+        const modalMapDiv = document.getElementById('modalMap');
+        modalMapDiv.innerHTML = ''; // Clear previous map
+        
+        const modalMap = L.map('modalMap').setView([gym.coordinates.lat, gym.coordinates.lng], 15);
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(modalMap);
+        
+        L.marker([gym.coordinates.lat, gym.coordinates.lng], {
+            icon: L.divIcon({
+                className: 'custom-marker',
+                html: `<div class="marker-pin ${gym.location.includes('Bohol') ? 'bohol' : 'cebu'}">
+                           <i class="fas fa-dumbbell"></i>
+                       </div>`,
+                iconSize: [30, 40],
+                iconAnchor: [15, 40]
+            })
+        }).addTo(modalMap);
+    }, 100);
 
     // Show modal
     const modal = document.getElementById('gymModal');
@@ -751,4 +782,124 @@ function closeComparison() {
     modal.classList.remove('show');
     document.body.style.overflow = 'auto';
 }
+
+// Map View Functionality
+let map = null;
+let markers = [];
+
+function toggleView(view) {
+    const listView = document.getElementById('gymResults');
+    const mapView = document.getElementById('mapView');
+    const listBtn = document.querySelector('[data-view="list"]');
+    const mapBtn = document.querySelector('[data-view="map"]');
+    
+    if (view === 'map') {
+        listView.style.display = 'none';
+        mapView.style.display = 'block';
+        listBtn.classList.remove('active');
+        mapBtn.classList.add('active');
+        
+        // Initialize map if not already done
+        if (!map) {
+            initializeMap();
+        }
+    } else {
+        listView.style.display = 'grid';
+        mapView.style.display = 'none';
+        mapBtn.classList.remove('active');
+        listBtn.classList.add('active');
+    }
+}
+
+function initializeMap() {
+    // Center map on Cebu
+    map = L.map('gymMap').setView([10.3157, 123.8854], 11);
+    
+    // Add tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 18
+    }).addTo(map);
+    
+    // Add markers for all gyms
+    Object.entries(gymDetails).forEach(([gymId, gym]) => {
+        const marker = L.marker([gym.coordinates.lat, gym.coordinates.lng], {
+            icon: L.divIcon({
+                className: 'custom-marker',
+                html: `<div class="marker-pin ${gym.location.includes('Bohol') ? 'bohol' : 'cebu'}">
+                           <i class="fas fa-dumbbell"></i>
+                       </div>`,
+                iconSize: [30, 40],
+                iconAnchor: [15, 40],
+                popupAnchor: [0, -40]
+            })
+        }).addTo(map);
+        
+        // Create popup content
+        const popupContent = `
+            <div class="map-popup-content">
+                <h3>${gym.name}</h3>
+                <div class="popup-rating">
+                    <i class="fas fa-star"></i>
+                    <span>${gym.rating}</span>
+                    <span style="color: rgba(255, 255, 255, 0.6);">${gym.reviewCount}</span>
+                </div>
+                <p><i class="fas fa-location-dot" style="color: #00FF85;"></i> ${gym.location}</p>
+                <p class="popup-price"><i class="fas fa-peso-sign"></i> Starting at ${gym.pricing[1].amount}/month</p>
+                <button class="popup-btn" onclick="openModal('${gymId}')">View Details</button>
+            </div>
+        `;
+        
+        marker.bindPopup(popupContent, {
+            maxWidth: 300,
+            className: 'custom-popup'
+        });
+        
+        markers.push({ marker, gymId });
+    });
+}
+
+// Add custom marker styles
+const style = document.createElement('style');
+style.textContent = `
+    .custom-marker {
+        background: none;
+        border: none;
+    }
+    
+    .marker-pin {
+        width: 30px;
+        height: 40px;
+        border-radius: 50% 50% 50% 0;
+        background: #00FF85;
+        position: relative;
+        transform: rotate(-45deg);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid white;
+    }
+    
+    .marker-pin.bohol {
+        background: #FF6B6B;
+    }
+    
+    .marker-pin i {
+        transform: rotate(45deg);
+        color: white;
+        font-size: 14px;
+    }
+    
+    .marker-pin::after {
+        content: '';
+        width: 14px;
+        height: 14px;
+        margin: auto;
+        background: white;
+        position: absolute;
+        border-radius: 50%;
+    }
+`;
+document.head.appendChild(style);
 
