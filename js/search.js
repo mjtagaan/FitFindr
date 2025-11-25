@@ -675,9 +675,9 @@ function openComparison() {
                     <i class="fas fa-clock"></i> Hours
                 </div>
                 ${gyms.map(gym => `
-                    <div class="comparison-cell">
+                    <div class="comparison-cell" style="flex-direction: column; align-items: flex-start;">
                         ${Object.entries(gym.hours).map(([day, time]) => 
-                            `<div class="hours-compact">${day}: ${time}</div>`
+                            `<div class="hours-compact"><strong>${day}:</strong> ${time}</div>`
                         ).join('')}
                     </div>
                 `).join('')}
@@ -717,7 +717,7 @@ function openComparison() {
                     <i class="fas fa-tags"></i> All Prices
                 </div>
                 ${gyms.map(gym => `
-                    <div class="comparison-cell">
+                    <div class="comparison-cell" style="flex-direction: column; align-items: flex-start;">
                         ${gym.pricing.map(p => `
                             <div class="price-option">
                                 <strong>${p.duration}:</strong> ${p.amount}
