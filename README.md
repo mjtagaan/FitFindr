@@ -1,6 +1,6 @@
 # FitFindr 🏋️
 
-A modern web application for discovering and comparing gyms in Cebu and Bohol, Philippines. Built as a school project showcasing front-end web development skills.
+A modern web application for discovering and comparing gyms in the Philippines. Built as a school project showcasing front-end web development skills.
 
 ## 📋 Table of Contents
 
@@ -348,7 +348,3 @@ Created as a school project to demonstrate:
 ## 📄 License
 
 This is a school project. Feel free to use as reference or learning material.
-
----
-
-**Made with 💪 for fitness enthusiasts in Cebu and Bohol**
