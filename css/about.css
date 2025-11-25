@@ -1,50 +1,59 @@
 /* About Hero Section */
 .about-hero {
-    min-height: 40vh;
+    min-height: 35vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 8rem 2rem 2rem;
-    background: radial-gradient(ellipse at top, rgba(0, 255, 133, 0.05) 0%, transparent 50%);
+    padding: 8rem 2rem 3rem;
+    background: radial-gradient(ellipse at top, rgba(0, 217, 255, 0.08) 0%, transparent 60%);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-hero-content {
+    position: relative;
+    z-index: 1;
 }
 
 .about-hero-content h2 {
-    font-size: 4rem;
-    line-height: 1.2;
-    margin-bottom: 1rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-size: 5rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    text-shadow: 0 0 60px rgba(0, 217, 255, 0.3),
+                 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .subtitle {
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.6rem;
+    color: rgba(255, 255, 255, 0.8);
     margin: 0;
     font-weight: 400;
+    letter-spacing: -0.01em;
 }
 
 /* Story Section */
 .about-story {
-    padding: 6rem 2rem 2rem;
+    padding: 2rem 2rem 4rem;
     background: linear-gradient(180deg, 
         transparent 0%, 
-        rgba(0, 255, 133, 0.02) 50%,
+        rgba(0, 217, 255, 0.03) 50%,
         transparent 100%
     );
 }
 
 .story-container {
-    max-width: 900px;
+    max-width: 1600px;
     margin: 0 auto;
 }
 
 .story-content {
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(0, 255, 133, 0.1);
+    border: 1px solid rgba(0, 217, 255, 0.15);
     border-radius: 24px;
-    padding: 4rem 3rem;
-    text-align: center;
+    padding: 3rem 2.5rem;
     position: relative;
     overflow: hidden;
 }
@@ -55,58 +64,98 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 3px;
     background: linear-gradient(90deg, 
-        transparent 0%,
-        #00FF85 50%,
-        transparent 100%
+        #00D9FF 0%,
+        #FF6B35 100%
     );
 }
 
-.story-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 2rem;
+.story-header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(0, 255, 133, 0.2), rgba(0, 255, 133, 0.08));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.story-icon {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(20, 30, 48, 0.9) 0%, rgba(15, 23, 41, 0.95) 100%);
     border-radius: 20px;
-    border: 1.5px solid rgba(0, 255, 133, 0.3);
+    border: 2px solid rgba(0, 217, 255, 0.4);
+    box-shadow: 0 10px 40px rgba(0, 217, 255, 0.25),
+                0 0 60px rgba(0, 217, 255, 0.1);
+    flex-shrink: 0;
 }
 
 .story-icon i {
-    font-size: 2.5rem;
-    color: #00FF85;
+    font-size: 3rem;
+    background: linear-gradient(180deg, #00D9FF 0%, #FF6B35 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 20px rgba(0, 217, 255, 0.4));
 }
 
 .story-content h3 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
+    font-size: 2.8rem;
+    margin: 0;
     color: #ffffff;
-    font-weight: 700;
+    font-weight: 800;
+    letter-spacing: -0.02em;
 }
 
 .story-text {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 1.5rem;
-    text-align: left;
+    font-size: 1.2rem;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 1.8rem;
+    font-weight: 400;
 }
 
-.story-text:last-child {
+.story-text:last-of-type {
     margin-bottom: 0;
 }
 
 .highlight-text {
-    color: rgba(255, 255, 255, 0.9);
+    color: #ffffff;
     font-weight: 500;
-    padding: 1.5rem;
-    background: rgba(0, 255, 133, 0.05);
-    border-left: 3px solid #00FF85;
-    border-radius: 8px;
-    margin-top: 2rem;
+    padding: 2rem 3rem 2rem 3rem;
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(255, 107, 53, 0.08));
+    border: 2px solid rgba(0, 217, 255, 0.3);
+    border-radius: 16px;
+    margin-top: 2.5rem;
+    font-size: 1.25rem;
+    line-height: 1.8;
+    position: relative;
+    overflow: hidden;
+}
+
+.highlight-text::before {
+    content: '\f10d';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 1.5rem;
+    left: 1rem;
+    font-size: 1.5rem;
+    color: #00D9FF;
+    z-index: 1;
+}
+
+.highlight-text::after {
+    content: '\f10e';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    display: inline;
+    margin-left: 0.5rem;
+    font-size: 1.5rem;
+    color: #00D9FF;
 }
 
 /* Mission Section */
@@ -121,10 +170,12 @@
 
 .mission-container h3 {
     text-align: center;
-    font-size: 3rem;
+    font-size: 3.2rem;
     margin-bottom: 4rem;
-    font-weight: 700;
+    font-weight: 800;
     color: #ffffff;
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 40px rgba(0, 217, 255, 0.3);
 }
 
 .mission-grid {
@@ -134,50 +185,92 @@
 }
 
 .mission-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(0, 255, 133, 0.1);
+    background: linear-gradient(145deg, rgba(10, 14, 39, 0.8), rgba(15, 23, 41, 0.9));
+    border: 2px solid rgba(0, 217, 255, 0.2);
     border-radius: 20px;
     padding: 3rem 2rem;
     text-align: center;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.mission-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top right, rgba(0, 217, 255, 0.15), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
 .mission-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(0, 255, 133, 0.3);
-    box-shadow: 0 10px 40px rgba(0, 255, 133, 0.15);
+    transform: translateY(-12px) scale(1.02);
+    background: linear-gradient(145deg, rgba(0, 217, 255, 0.15), rgba(255, 107, 53, 0.08));
+    border-color: #00D9FF;
+    box-shadow: 0 20px 60px rgba(0, 217, 255, 0.3),
+                0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.mission-card:hover::before {
+    opacity: 1;
 }
 
 .mission-icon {
-    width: 70px;
-    height: 70px;
+    width: 90px;
+    height: 90px;
     margin: 0 auto 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(0, 255, 133, 0.15), rgba(0, 255, 133, 0.05));
-    border-radius: 18px;
-    border: 1px solid rgba(0, 255, 133, 0.25);
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(255, 107, 53, 0.1));
+    border-radius: 20px;
+    border: 2px solid rgba(0, 217, 255, 0.4);
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 30px rgba(0, 217, 255, 0.2);
+}
+
+.mission-card:hover .mission-icon {
+    transform: scale(1.15) rotate(-5deg);
+    border-color: #00D9FF;
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.3), rgba(255, 107, 53, 0.15));
+    box-shadow: 0 0 40px rgba(0, 217, 255, 0.4);
 }
 
 .mission-icon i {
-    font-size: 2rem;
-    color: #00FF85;
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, #00D9FF, #FF6B35);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 0.3s ease;
+}
+
+.mission-card:hover .mission-icon i {
+    transform: scale(1.1);
 }
 
 .mission-card h4 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
     color: #ffffff;
-    font-weight: 600;
+    font-weight: 800;
+    position: relative;
+    z-index: 1;
 }
 
 .mission-card p {
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.7;
     font-size: 1rem;
     margin: 0;
+    position: relative;
+    z-index: 1;
 }
 
 /* CTA Section */
@@ -227,6 +320,21 @@
         font-size: 1.2rem;
     }
 
+    .story-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .story-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .story-icon i {
+        font-size: 2.5rem;
+    }
+
     .story-content {
         padding: 2.5rem 1.5rem;
     }
@@ -237,6 +345,11 @@
 
     .story-text {
         font-size: 1.05rem;
+    }
+
+    .highlight-text {
+        font-size: 1.1rem;
+        padding: 1.5rem;
     }
 
     .mission-container h3 {
@@ -265,11 +378,25 @@
         font-size: 1rem;
     }
 
+    .story-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .story-icon i {
+        font-size: 2rem;
+    }
+
     .story-content h3 {
         font-size: 1.75rem;
     }
 
     .story-text {
         font-size: 1rem;
+    }
+
+    .highlight-text {
+        font-size: 1rem;
+        padding: 1.25rem;
     }
 }

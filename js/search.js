@@ -1,6 +1,23 @@
-// Search and Filter Functionality
+/**
+ * FitFindr - Search and Filter Functionality
+ * 
+ * This file handles:
+ * - Dynamic gym filtering by name, location, price, amenities, ratings, and hours
+ * - Gym comparison feature (up to 3 gyms side-by-side)
+ * - Interactive map display with gym location markers
+ * - Modal pop-ups with detailed gym information
+ * 
+ * Data Structure:
+ * - gymDetails: Object containing comprehensive information for all 9 gyms
+ * - Each gym includes: name, images, ratings, location, coordinates, hours,
+ *   contact info, facilities, pricing tiers, and descriptions
+ */
 
-// Update price display
+// ============================================
+// PRICE RANGE FILTER
+// ============================================
+
+// Update price display in real-time as user adjusts slider
 const priceRange = document.getElementById('priceRange');
 const maxPrice = document.getElementById('maxPrice');
 
@@ -8,12 +25,29 @@ if (priceRange) {
     priceRange.addEventListener('input', function() {
         const price = parseInt(this.value);
         maxPrice.textContent = '₱' + price.toLocaleString();
-        filterGyms();
+        filterGyms(); // Re-filter gyms whenever price changes
     });
 }
 
-// Filter gyms based on all criteria
+// ============================================
+// MAIN FILTERING FUNCTION
+// ============================================
+
+/**
+ * filterGyms()
+ * 
+ * Main function that filters gym cards based on multiple criteria:
+ * - Search text (matches gym name or description)
+ * - City location (Cebu or Bohol)
+ * - Price range (monthly membership cost)
+ * - Amenities (parking, pool, classes, etc.)
+ * - Star ratings (3.0+, 4.0+, etc.)
+ * - Operating hours (24/7 or specific times)
+ * 
+ * Shows/hides gym cards dynamically and updates the results count
+ */
 function filterGyms() {
+    // Get all current filter values
     const searchInput = document.getElementById('searchInput').value.toLowerCase();
     const cityFilter = document.getElementById('cityFilter').value.toLowerCase();
     const priceLimit = parseInt(document.getElementById('priceRange').value);
@@ -162,7 +196,28 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('gymCount').textContent = totalGyms;
 });
 
-// Comprehensive Gym Details Database
+// ============================================
+// GYM DATABASE
+// ============================================
+
+/**
+ * gymDetails Object
+ * 
+ * Comprehensive database containing detailed information for all 9 gyms.
+ * 
+ * Structure for each gym:
+ * - name: Full gym name
+ * - image: Path to thumbnail image
+ * - rating: Star rating (0-5)
+ * - reviewCount: Number of reviews (display string)
+ * - location: Full address
+ * - coordinates: { lat, lng } for map markers
+ * - description: Detailed gym description
+ * - hours: Object with day ranges as keys, time strings as values
+ * - contact: { phone, email, website }
+ * - facilities: Array of { icon, name } objects for amenities
+ * - pricing: Array of { duration, amount, period } for membership tiers
+ */
 const gymDetails = {
     'yokoks-consolacion': {
         name: 'Yokoks Gym Consolacion',
@@ -473,12 +528,29 @@ const gymDetails = {
     }
 };
 
-// Modal Functions
+// ============================================
+// MODAL POPUP SYSTEM
+// ============================================
+
+/**
+ * openModal(gymId)
+ * 
+ * Opens a detailed modal popup for a specific gym
+ * 
+ * @param {string} gymId - The unique identifier for the gym (e.g., 'yokoks-consolacion')
+ * 
+ * Process:
+ * 1. Retrieves gym data from gymDetails object
+ * 2. Populates modal with: image, name, rating, location
+ * 3. Dynamically generates HTML for: hours, contact info, facilities, pricing
+ * 4. Initializes a Leaflet map showing the gym's location
+ * 5. Displays the modal with fade-in animation
+ */
 function openModal(gymId) {
     const gym = gymDetails[gymId];
-    if (!gym) return;
+    if (!gym) return; // Exit if gym not found
 
-    // Populate modal content
+    // Populate basic modal content
     document.getElementById('modalImage').src = gym.image;
     document.getElementById('modalImage').alt = gym.name;
     document.getElementById('modalGymName').textContent = gym.name;
@@ -486,7 +558,7 @@ function openModal(gymId) {
     document.getElementById('modalReviewCount').textContent = gym.reviewCount;
     document.getElementById('modalLocation').textContent = gym.location;
 
-    // Populate hours
+    // Populate hours (convert object to HTML list)
     const hoursHTML = Object.entries(gym.hours).map(([day, time]) => `
         <div class="hours-item">
             <span class="hours-day">${day}</span>
@@ -560,6 +632,11 @@ function openModal(gymId) {
     document.body.style.overflow = 'hidden'; // Prevent background scrolling
 }
 
+/**
+ * closeModal()
+ * 
+ * Closes the gym details modal and restores page scrolling
+ */
 function closeModal() {
     const modal = document.getElementById('gymModal');
     modal.classList.remove('show');
@@ -582,14 +659,35 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Comparison Feature
-let selectedGyms = [];
-const MAX_COMPARE = 3;
+// ============================================
+// GYM COMPARISON FEATURE
+// ============================================
 
+/**
+ * Allows users to select and compare up to 3 gyms side-by-side
+ * Shows comparison bar with selected gyms and "Compare" button
+ */
+
+let selectedGyms = []; // Array storing IDs of gyms selected for comparison
+const MAX_COMPARE = 3; // Maximum number of gyms that can be compared
+
+/**
+ * toggleCompare(gymId)
+ * 
+ * Handles checkbox clicks on gym cards to add/remove from comparison
+ * 
+ * @param {string} gymId - The gym's unique identifier
+ * 
+ * Rules:
+ * - Maximum 3 gyms can be selected
+ * - Shows alert if user tries to select more than 3
+ * - Updates comparison bar in real-time
+ */
 function toggleCompare(gymId) {
     const checkbox = document.getElementById(`compare-${gymId}`);
     
     if (checkbox.checked) {
+        // Prevent selecting more than MAX_COMPARE gyms
         if (selectedGyms.length >= MAX_COMPARE) {
             checkbox.checked = false;
             alert(`You can only compare up to ${MAX_COMPARE} gyms at a time.`);
@@ -597,12 +695,24 @@ function toggleCompare(gymId) {
         }
         selectedGyms.push(gymId);
     } else {
+        // Remove gym from selection
         selectedGyms = selectedGyms.filter(id => id !== gymId);
     }
     
     updateComparisonBar();
 }
 
+/**
+ * updateComparisonBar()
+ * 
+ * Updates the floating comparison bar UI
+ * 
+ * Updates:
+ * - Shows/hides the bar based on selection
+ * - Displays count of selected gyms
+ * - Shows gym name tags with remove buttons
+ * - Enables "Compare" button when 2+ gyms selected
+ */
 function updateComparisonBar() {
     const bar = document.getElementById('comparisonBar');
     const countSpan = document.querySelector('.comparison-count');
@@ -633,6 +743,12 @@ function updateComparisonBar() {
     }
 }
 
+/**
+ * removeFromComparison(gymId)
+ * 
+ * Removes a specific gym from the comparison selection
+ * Called when user clicks the X button on a gym tag
+ */
 function removeFromComparison(gymId) {
     const checkbox = document.getElementById(`compare-${gymId}`);
     if (checkbox) checkbox.checked = false;
@@ -640,6 +756,11 @@ function removeFromComparison(gymId) {
     updateComparisonBar();
 }
 
+/**
+ * clearComparison()
+ * 
+ * Clears all selected gyms and resets the comparison
+ */
 function clearComparison() {
     selectedGyms.forEach(gymId => {
         const checkbox = document.getElementById(`compare-${gymId}`);
@@ -777,16 +898,43 @@ function openComparison() {
     document.body.style.overflow = 'hidden';
 }
 
+/**
+ * closeComparison()
+ * 
+ * Closes the comparison modal and restores page scrolling
+ */
 function closeComparison() {
     const modal = document.getElementById('comparisonModal');
     modal.classList.remove('show');
     document.body.style.overflow = 'auto';
 }
 
-// Map View Functionality
-let map = null;
-let markers = [];
+// ============================================
+// INTERACTIVE MAP VIEW
+// ============================================
 
+/**
+ * Map functionality using Leaflet.js library
+ * Shows all gym locations on an interactive OpenStreetMap
+ * 
+ * Features:
+ * - Color-coded markers (green for Cebu, red for Bohol)
+ * - Clickable popups with gym info and "View Details" button
+ * - Toggle between list and map views
+ */
+
+let map = null; // Leaflet map instance
+let markers = []; // Array of map markers
+
+/**
+ * toggleView(view)
+ * 
+ * Switches between list view and map view
+ * 
+ * @param {string} view - Either 'list' or 'map'
+ * 
+ * Map is lazy-loaded on first view to improve page load performance
+ */
 function toggleView(view) {
     const listView = document.getElementById('gymResults');
     const mapView = document.getElementById('mapView');
@@ -811,8 +959,20 @@ function toggleView(view) {
     }
 }
 
+/**
+ * initializeMap()
+ * 
+ * Creates the Leaflet map and adds markers for all gyms
+ * 
+ * Process:
+ * 1. Creates map centered on Cebu City
+ * 2. Adds OpenStreetMap tile layer
+ * 3. Loops through all gyms and creates markers at their coordinates
+ * 4. Color-codes markers: green for Cebu gyms, red for Bohol gyms
+ * 5. Adds popups with gym name, location, rating, and action button
+ */
 function initializeMap() {
-    // Center map on Cebu
+    // Center map on Cebu City
     map = L.map('gymMap').setView([10.3157, 123.8854], 11);
     
     // Add tile layer
@@ -842,9 +1002,9 @@ function initializeMap() {
                 <div class="popup-rating">
                     <i class="fas fa-star"></i>
                     <span>${gym.rating}</span>
-                    <span style="color: rgba(255, 255, 255, 0.6);">${gym.reviewCount}</span>
+                    <span>${gym.reviewCount}</span>
                 </div>
-                <p><i class="fas fa-location-dot" style="color: #00FF85;"></i> ${gym.location}</p>
+                <p class="popup-location"><i class="fas fa-location-dot"></i> ${gym.location}</p>
                 <p class="popup-price"><i class="fas fa-peso-sign"></i> Starting at ${gym.pricing[1].amount}/month</p>
                 <button class="popup-btn" onclick="openModal('${gymId}')">View Details</button>
             </div>
