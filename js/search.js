@@ -617,11 +617,11 @@ function openModal(gymId) {
         L.marker([gym.coordinates.lat, gym.coordinates.lng], {
             icon: L.divIcon({
                 className: 'custom-marker',
-                html: `<div class="marker-pin ${gym.location.includes('Bohol') ? 'bohol' : 'cebu'}">
+                html: `<div class="marker-pin">
                            <i class="fas fa-dumbbell"></i>
                        </div>`,
-                iconSize: [30, 40],
-                iconAnchor: [15, 40]
+                iconSize: [40, 40],
+                iconAnchor: [20, 20]
             })
         }).addTo(modalMap);
     }, 100);
@@ -986,12 +986,12 @@ function initializeMap() {
         const marker = L.marker([gym.coordinates.lat, gym.coordinates.lng], {
             icon: L.divIcon({
                 className: 'custom-marker',
-                html: `<div class="marker-pin ${gym.location.includes('Bohol') ? 'bohol' : 'cebu'}">
+                html: `<div class="marker-pin">
                            <i class="fas fa-dumbbell"></i>
                        </div>`,
-                iconSize: [30, 40],
-                iconAnchor: [15, 40],
-                popupAnchor: [0, -40]
+                iconSize: [40, 40],
+                iconAnchor: [20, 20],
+                popupAnchor: [0, -20]
             })
         }).addTo(map);
         
@@ -1028,37 +1028,30 @@ style.textContent = `
     }
     
     .marker-pin {
-        width: 30px;
+        width: 40px;
         height: 40px;
-        border-radius: 50% 50% 50% 0;
-        background: #00FF85;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(0, 217, 255, 0.95), rgba(0, 180, 216, 0.95));
         position: relative;
-        transform: rotate(-45deg);
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 3px solid white;
+        border: 3px solid rgba(10, 14, 39, 0.9);
+        box-shadow: 0 4px 15px rgba(0, 217, 255, 0.4),
+                    0 0 20px rgba(0, 217, 255, 0.2);
+        transition: all 0.3s ease;
     }
     
-    .marker-pin.bohol {
-        background: #FF6B6B;
+    .marker-pin:hover {
+        transform: scale(1.15);
+        box-shadow: 0 6px 20px rgba(0, 217, 255, 0.6),
+                    0 0 30px rgba(0, 217, 255, 0.3);
     }
     
     .marker-pin i {
-        transform: rotate(45deg);
-        color: white;
-        font-size: 14px;
-    }
-    
-    .marker-pin::after {
-        content: '';
-        width: 14px;
-        height: 14px;
-        margin: auto;
-        background: white;
-        position: absolute;
-        border-radius: 50%;
+        color: #0A0E27;
+        font-size: 18px;
+        filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.3));
     }
 `;
 document.head.appendChild(style);
