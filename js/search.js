@@ -115,6 +115,83 @@ function filterGyms() {
     
     // Update count
     document.getElementById('gymCount').textContent = visibleCount;
+    
+    // Filter map markers if map is initialized
+    if (map && markers.length > 0) {
+        filterMapMarkers();
+    }
+}
+
+/**
+ * filterMapMarkers()
+ * 
+ * Filters map markers based on current filter criteria
+ * Shows/hides markers to match the filtered gym list
+ */
+function filterMapMarkers() {
+    // Get all current filter values (same as filterGyms)
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const cityFilter = document.getElementById('cityFilter').value.toLowerCase();
+    const priceLimit = parseInt(document.getElementById('priceRange').value);
+    
+    const selectedAmenities = Array.from(document.querySelectorAll('.amenity-filters input:checked'))
+        .map(checkbox => checkbox.value);
+    
+    const selectedRatings = Array.from(document.querySelectorAll('.rating-filters input:checked'))
+        .map(checkbox => parseFloat(checkbox.value));
+    
+    const selectedHours = Array.from(document.querySelectorAll('.hours-filters input:checked'))
+        .map(checkbox => checkbox.value);
+    
+    markers.forEach(({ marker, gymId }) => {
+        const gym = gymDetails[gymId];
+        
+        // Get gym city from location
+        let city = '';
+        if (gym.location.toLowerCase().includes('bohol') || gym.location.toLowerCase().includes('tagbilaran')) {
+            city = 'bohol';
+        } else {
+            city = 'cebu';
+        }
+        
+        // Get monthly price (index 1 in pricing array)
+        const price = parseInt(gym.pricing[1].amount.replace('₱', '').replace(',', ''));
+        const rating = gym.rating;
+        const name = gym.name.toLowerCase();
+        const description = gym.description.toLowerCase();
+        
+        // Check amenities
+        const gymAmenities = [];
+        gym.facilities.forEach(facility => {
+            const facilityName = facility.name.toLowerCase();
+            if (facilityName.includes('pool')) gymAmenities.push('pool');
+            if (facilityName.includes('sauna')) gymAmenities.push('sauna');
+            if (facilityName.includes('parking')) gymAmenities.push('parking');
+            if (facilityName.includes('classes')) gymAmenities.push('classes');
+            if (facilityName.includes('trainer')) gymAmenities.push('trainer');
+        });
+        
+        // Check for 24/7 in hours
+        const hoursText = Object.values(gym.hours).join(' ').toLowerCase();
+        if (hoursText.includes('24/7') || hoursText.includes('open 24')) {
+            gymAmenities.push('24h');
+        }
+        
+        // Apply filter logic
+        let matchesSearch = searchInput === '' || name.includes(searchInput) || description.includes(searchInput);
+        let matchesCity = cityFilter === '' || city === cityFilter;
+        let matchesPrice = price <= priceLimit;
+        let matchesRating = selectedRatings.length === 0 || selectedRatings.some(minRating => rating >= minRating);
+        let matchesAmenities = selectedAmenities.length === 0 || selectedAmenities.every(amenity => gymAmenities.includes(amenity));
+        let matchesHours = selectedHours.length === 0 || selectedHours.every(hour => gymAmenities.includes(hour));
+        
+        // Show or hide marker
+        if (matchesSearch && matchesCity && matchesPrice && matchesRating && matchesAmenities && matchesHours) {
+            marker.addTo(map);
+        } else {
+            map.removeLayer(marker);
+        }
+    });
 }
 
 // Sort gyms
@@ -167,6 +244,13 @@ function clearFilters() {
     
     // Reset count
     document.getElementById('gymCount').textContent = document.querySelectorAll('.gym-result-card').length;
+    
+    // Show all map markers if map is initialized
+    if (map && markers.length > 0) {
+        markers.forEach(({ marker }) => {
+            marker.addTo(map);
+        });
+    }
 }
 
 // Add event listeners to filter checkboxes
@@ -603,7 +687,12 @@ function openModal(gymId) {
     `).join('');
     document.getElementById('modalPricing').innerHTML = pricingHTML;
 
-    // Initialize modal map
+    // Show modal first
+    const modal = document.getElementById('gymModal');
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+    // Initialize modal map after modal is visible
     setTimeout(() => {
         const modalMapDiv = document.getElementById('modalMap');
         modalMapDiv.innerHTML = ''; // Clear previous map
@@ -624,12 +713,12 @@ function openModal(gymId) {
                 iconAnchor: [20, 20]
             })
         }).addTo(modalMap);
-    }, 100);
-
-    // Show modal
-    const modal = document.getElementById('gymModal');
-    modal.classList.add('show');
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        
+        // Force Leaflet to recalculate map size
+        setTimeout(() => {
+            modalMap.invalidateSize();
+        }, 100);
+    }, 300);
 }
 
 /**
