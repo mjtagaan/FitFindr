@@ -43,12 +43,13 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     line-height: 1.6;
     color: #ffffff;
-    background: linear-gradient(135deg, #0A0E27 0%, #0F1729 50%, #0A0E27 100%);
-    background-attachment: fixed;
+    background: linear-gradient(135deg, #0A0E27, #001a33, #0A0E27, #001f3f);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite, pageLoadFadeIn 0.4s ease-out;
     -webkit-font-smoothing: antialiased; /* Smooth fonts on MacOS */
     -moz-osx-font-smoothing: grayscale; /* Smooth fonts on MacOS Firefox */
     position: relative;
-    animation: pageLoadFadeIn 0.4s ease-out;
+    overflow-x: hidden;
 }
 
 @keyframes pageLoadFadeIn {
@@ -59,6 +60,44 @@ body {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) translateX(0px);
+    }
+    25% {
+        transform: translateY(-20px) translateX(10px);
+    }
+    50% {
+        transform: translateY(-10px) translateX(-10px);
+    }
+    75% {
+        transform: translateY(-25px) translateX(5px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.05);
     }
 }
 
@@ -73,6 +112,117 @@ body::before {
     opacity: 0.3;
     pointer-events: none;
     z-index: 0;
+    animation: float 20s ease-in-out infinite;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 217, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+    animation: float 25s ease-in-out infinite reverse;
+}
+
+/* ============================================
+   ANIMATED BACKGROUND ORBS
+   ============================================ */
+
+.bg-orbs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(0, 217, 255, 0.04), rgba(0, 180, 216, 0.01));
+    filter: blur(60px);
+    animation: orbFloat 20s ease-in-out infinite;
+    opacity: 0.5;
+}
+
+.orb-1 {
+    width: 400px;
+    height: 400px;
+    top: -200px;
+    left: -200px;
+    animation: orbFloat 25s ease-in-out infinite;
+}
+
+.orb-2 {
+    width: 500px;
+    height: 500px;
+    top: 20%;
+    right: -250px;
+    animation: orbFloat 30s ease-in-out infinite reverse;
+    animation-delay: -5s;
+}
+
+.orb-3 {
+    width: 350px;
+    height: 350px;
+    bottom: -175px;
+    left: 10%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 107, 53, 0.03), rgba(255, 107, 53, 0.01));
+    animation: orbFloat 28s ease-in-out infinite;
+    animation-delay: -10s;
+}
+
+.orb-4 {
+    width: 450px;
+    height: 450px;
+    bottom: 10%;
+    right: 5%;
+    animation: orbFloat 35s ease-in-out infinite reverse;
+    animation-delay: -15s;
+}
+
+.orb-5 {
+    width: 300px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: orbPulse 20s ease-in-out infinite, orbFloat 40s ease-in-out infinite;
+    animation-delay: -20s;
+}
+
+@keyframes orbFloat {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    25% {
+        transform: translate(50px, -50px) scale(1.1);
+    }
+    50% {
+        transform: translate(-30px, -80px) scale(0.9);
+    }
+    75% {
+        transform: translate(70px, -30px) scale(1.05);
+    }
+}
+
+@keyframes orbPulse {
+    0%, 100% {
+        opacity: 0.15;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
 }
 
 /* ============================================
